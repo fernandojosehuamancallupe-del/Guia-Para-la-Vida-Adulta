@@ -800,3 +800,152 @@ footer i.fa-heart {
 .btn-mas-info:hover i {
   transform: scale(1.15);
 }
+
+/* ================================
+   SECCIÓN DE OPINIONES Y RECOMENDACIONES
+   ================================ */
+.opiniones {
+  margin: 2.5rem 0 1.5rem;
+  padding: 2rem 2rem 1.8rem;
+  background: linear-gradient(135deg, #FFFFFF, #FDF8F0);
+  border-radius: 1.2rem;
+  border: 1px solid rgba(200, 16, 46, 0.12);
+  border-left: 5px solid var(--peru-rojo);
+  box-shadow: 0 6px 22px rgba(92, 58, 33, 0.06);
+}
+
+.opiniones h2 {
+  font-size: 1.55rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--peru-rojo);
+}
+
+.opiniones h2 i {
+  color: var(--peru-dorado-cl);
+  text-shadow: 0 0 12px rgba(212, 160, 23, 0.35);
+}
+
+.opiniones-intro {
+  color: var(--peru-texto-soft);
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+/* Formulario */
+.formulario {
+  display: grid;
+  gap: 1.1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-group label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--peru-texto);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.form-group label i {
+  color: var(--peru-rojo);
+  font-size: 0.85rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  padding: 0.7rem 1rem;
+  border: 1.5px solid rgba(92, 58, 33, 0.15);
+  border-radius: 0.7rem;
+  background: #FFFFFF;
+  color: var(--peru-texto);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--peru-rojo);
+  box-shadow: 0 0 0 3px rgba(200, 16, 46, 0.1);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 110px;
+}
+
+.form-group select {
+  cursor: pointer;
+}
+
+/* Botón enviar */
+.btn-enviar {
+  background: var(--peru-rojo);
+  color: #FFFFFF;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.85rem 1.8rem;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 14px rgba(200, 16, 46, 0.28);
+  letter-spacing: 0.3px;
+  align-self: flex-start;
+  margin-top: 0.3rem;
+}
+
+.btn-enviar:hover {
+  background: var(--peru-rojo-osc);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(200, 16, 46, 0.35);
+}
+
+.btn-enviar:active {
+  transform: translateY(0);
+}
+
+.form-nota {
+  font-size: 0.8rem;
+  color: var(--peru-texto-soft);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.4rem;
+}
+
+.form-nota i {
+  color: var(--peru-verde);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .opiniones {
+    padding: 1.5rem 1.2rem;
+  }
+  .opiniones h2 {
+    font-size: 1.25rem;
+  }
+  .btn-enviar {
+    width: 100%;
+  }
+}
