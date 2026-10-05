@@ -308,7 +308,56 @@
       <div class="consejo-item"><i class="fas fa-users"></i><span>Pregunta a tus padres o tutores si tienes dudas.</span></div>
     </div>
   </div>
+  
+  <!-- ================================
+     SECCIÓN DE OPINIONES Y RECOMENDACIONES
+     ================================ -->
+<section class="opiniones" id="opiniones">
+  <h2><i class="fas fa-comments"></i> Envíanos tu opinión o recomendación</h2>
+  <p class="opiniones-intro">
+    ¿Tienes alguna sugerencia, encontraste un error, o quieres recomendarnos un trámite que deberíamos agregar?
+    ¡Escríbenos! Tu mensaje llegará directo a nuestro panel.
+  </p>
 
+  <!-- FORMSPREE -->
+  <form action="https://formspree.io/f/moejqbrg" method="POST" class="formulario">
+    <div class="form-group">
+      <label for="nombre"><i class="fas fa-user"></i> Tu nombre</label>
+      <input type="text" id="nombre" name="nombre" placeholder="Ej: María López" required>
+    </div>
+
+    <div class="form-group">
+      <label for="correo"><i class="fas fa-envelope"></i> Tu correo (opcional)</label>
+      <input type="email" id="correo" name="correo" placeholder="tucorreo@ejemplo.com">
+    </div>
+
+    <div class="form-group">
+      <label for="tipo"><i class="fas fa-tag"></i> Tipo de mensaje</label>
+      <select id="tipo" name="tipo" required>
+        <option value="">Selecciona una opción</option>
+        <option value="Recomendación">Recomendación</option>
+        <option value="Opinión">Opinión</option>
+        <option value="Reportar error">Reportar un error</option>
+        <option value="Sugerir trámite">Sugerir un nuevo trámite</option>
+        <option value="Otro">Otro</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="mensaje"><i class="fas fa-pen"></i> Tu mensaje</label>
+      <textarea id="mensaje" name="mensaje" rows="5" placeholder="Cuéntanos qué piensas, qué mejorarías o qué trámite te gustaría ver aquí..." required minlength="10"></textarea>
+    </div>
+
+    <button type="submit" class="btn-enviar">
+      <i class="fas fa-paper-plane"></i> Enviar mensaje
+    </button>
+
+    <p class="form-nota">
+      <i class="fas fa-lock"></i> Tu información no se comparte con terceros.
+    </p>
+  </form>
+</section>
+    
   <!-- ENLACES ÚTILES -->
   <div class="enlaces">
     <h3><i class="fas fa-link"></i> Enlaces oficiales</h3>
