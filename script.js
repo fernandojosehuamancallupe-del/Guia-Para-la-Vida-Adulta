@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // ============================================
   // 1. CONFIGURACIÓN (Revisa que esté tu URL)
   // ============================================
-  const PROXY_URL = 'https://steep-truth-0416proxi-gemini.fernandojosehuamancallupe.workers.dev'; 
+  const PROXY_URL = 'https://script.google.com/macros/s/AKfycbwPjNRXyhqupSczcjToHnoAbLDsl7ZAPAxa5nCaltfqIzUmqHjcy10Vua73p_jyUsRO/exec'; 
   const FORMSPREE_ID = 'https://formspree.io/f/moejqbrg"'; // ⚠️ Pon tu ID de Formspree aquí si usas el formulario
 
   // ============================================
