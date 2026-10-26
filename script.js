@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const FORMSPREE_ID = 'https://formspree.io/f/moejqbrg';
 
 // 1. URL de tu Cloudflare Worker (Cámbiala por la que te dio Cloudflare)
-const PROXY_URL = 'https://guia-para-la-vida-adulta.fernandojosehuamancallupe.workers.dev/'; // ⚠️ CAMBIA ESTO
+const PROXY_URL = 'https://steep-truth-0416proxi-gemini.fernandojosehuamancallupe.workers.dev';
 
 // 2. Función para llamar al proxy (y este a Gemini)
 async function preguntarAGemini(mensaje) {
