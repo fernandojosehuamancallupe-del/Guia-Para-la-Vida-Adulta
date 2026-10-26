@@ -1,28 +1,59 @@
 <!DOCTYPE html>
 <html lang="es">
-  
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Guía para la Vida Adulta - Adolescentes Perú</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link rel="stylesheet" href="styles.css">
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-V7D6DPVMXY"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-V7D6DPVMXY');
-</script>
-<head/>
+  <!-- ================================
+       POLÍTICA DE SEGURIDAD (CSP)
+       Permite solo los recursos necesarios:
+       - YouTube para videos
+       - Formspree para el formulario
+       - Google Fonts para tipografía
+       - Font Awesome desde cdnjs
+       ================================ -->
+  <meta http-equiv="Content-Security-Policy"
+        content="
+          default-src 'self';
+          script-src 'self' https://cdnjs.cloudflare.com https://gc.zgo.at 'unsafe-inline';
+          style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com;
+          font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;
+          img-src 'self' data:;
+          connect-src 'self' https://formspree.io https://www.youtube.com https://gc.zgo.at;
+          frame-src https://www.youtube.com https://www.youtube-nocookie.com;
+          form-action 'self' https://formspree.io;
+          frame-ancestors 'none';
+          base-uri 'self';
+          object-src 'none';
+        ">
+
+  <!-- Refuerzo de políticas de referencia y permisos -->
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
+
+  <!-- Google Fonts (con crossorigin para SRI) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome con SRI (versión 6.4.0 fijada) -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer">
+
+  <!-- CSS propio -->
+  <link rel="stylesheet" href="styles.css">
+</head>
 <body>
-  
+
+<!-- Blobs decorativos -->
 <div class="blob blob-1"></div>
 <div class="blob blob-2"></div>
 <div class="blob blob-3"></div>
+
 <div class="container">
 
   <!-- HEADER -->
@@ -48,255 +79,170 @@
 
   <!-- TRÁMITES -->
   <h2 style="font-size: 1.6rem; font-weight: 600; margin: 0.5rem 0 0.2rem;">
-    <i class="fas fa-clipboard-list" style="color: #d41b2c; margin-right: 0.7rem;"></i>Trámites esenciales
+    <i class="fas fa-clipboard-list" style="color: var(--peru-rojo); margin-right: 0.7rem;"></i>Trámites esenciales
   </h2>
-  <p style="color: #475569; margin-bottom: 1.5rem;">Haz clic en "Ver pasos" para conocer los detalles de cada trámite.</p>
+  <p style="color: var(--peru-texto-soft); margin-bottom: 1.5rem;">Haz clic en "Ver pasos" para conocer los detalles de cada trámite.</p>
 
   <div class="tramites-grid" id="tramitesGrid">
 
-    <!-- Tarjeta 1: DNI -->
+    <!-- 1. DNI -->
     <div class="tramite-card" data-color="rojo">
       <div class="icon"><i class="fas fa-id-card"></i></div>
       <h3>DNI (Mayor de edad)</h3>
       <p>Obtén tu Documento Nacional de Identidad como ciudadano peruano adulto.</p>
-
       <div class="modalidad">
         <span class="pill pill-presencial"><i class="fas fa-building"></i> Presencial</span>
       </div>
-
-  <div class="video-tutorial">
-    <p class="video-label"><i class="fas fa-video"></i> Video tutorial</p>
-    <div class="video-wrapper">
-      <iframe 
-        src="https://www.youtube.com/embed/TOOlb5n9nfE" 
-        title="Video tutorial DNI"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen
-        loading="lazy">
-      </iframe>
-    </div>
-  </div>
-
+      <div class="video-tutorial">
+        <p class="video-label"><i class="fas fa-video"></i> Video tutorial</p>
+        <div class="video-wrapper" data-video="https://www.youtube.com/embed/TOOlb5n9nfE"></div>
+      </div>
       <button class="btn-ver-mas" data-target="detalle1"><span>Ver pasos</span> <i class="fas fa-chevron-down"></i></button>
       <div class="detalle" id="detalle1">
         <ul>
-          <li><strong>¿Desde cuándo?</strong> Puedes solicitarlo desde que cumples <strong>17 años</strong>, no necesitas esperar a los 18.</li>
-          <li><strong>Requisitos:</strong> DNI anterior (o partida de nacimiento), comprobante de pago. Si actualizas domicilio: recibo de agua/luz/teléfono (máx. 6 meses de antigüedad).</li>
-          <li><strong>Costo:</strong> S/ 30.00 (DNI amarillo) o S/ 41.00 (DNIe) con código de tributo 02121.</li>
-          <li><strong>Dónde pagar:</strong> Págalo.pe, Banco de la Nación o agentes BCP con Yape.</li>
-          <li><strong>Dónde tramitar:</strong> Cualquier oficina del RENIEC o agencias autorizadas. Es presencial porque registran tus huellas y firma.</li>
-          <li><strong>Vigencia:</strong> 10 años desde la emisión (DNIe 3.0).</li>
-          <li><strong>Consejo:</strong> Hazlo con anticipación para evitar problemas al votar o identificarte.</li>
+          <li><strong>¿Desde cuándo?</strong> Puedes solicitarlo desde que cumples <strong>17 años</strong>.</li>
+          <li><strong>Requisitos:</strong> DNI anterior (o partida de nacimiento), comprobante de pago.</li>
+          <li><strong>Costo:</strong> S/ 30.00 (DNI amarillo) o S/ 41.00 (DNIe) con código 02121.</li>
+          <li><strong>Dónde pagar:</strong> Págalo.pe, Banco de la Nación o agentes BCP.</li>
+          <li><strong>Vigencia:</strong> 10 años.</li>
         </ul>
-        <a href="https://www.gob.pe/250-renovar-dni-azul-o-dnie" target="_blank" class="btn-mas-info">
+        <a href="https://www.gob.pe/250-renovar-dni-azul-o-dnie" target="_blank" rel="noopener noreferrer" class="btn-mas-info">
           <i class="fas fa-external-link-alt"></i> Más información oficial (RENIEC)
         </a>
       </div>
     </div>
 
-    <!-- Tarjeta 2: Pasaporte -->
+    <!-- 2. Pasaporte -->
     <div class="tramite-card" data-color="dorado">
       <div class="icon"><i class="fas fa-passport"></i></div>
       <h3>Pasaporte</h3>
       <p>Para viajar al extranjero y realizar trámites internacionales.</p>
-
       <div class="modalidad">
         <span class="pill pill-presencial"><i class="fas fa-building"></i> Presencial</span>
       </div>
-
-  <div class="video-tutorial">
-    <p class="video-label"><i class="fas fa-video"></i> Video tutorial</p>
-    <div class="video-wrapper">
-      <iframe 
-        src="https://www.youtube.com/embed/NTp68huTkV0" 
-        title="Video tutorial Pasaporte"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen
-        loading="lazy">
-      </iframe>
-    </div>
-  </div>
-
+      <div class="video-tutorial">
+        <p class="video-label"><i class="fas fa-video"></i> Video tutorial</p>
+        <div class="video-wrapper" data-video="https://www.youtube.com/embed/NTp68huTkV0"></div>
+      </div>
       <button class="btn-ver-mas" data-target="detalle2"><span>Ver pasos</span> <i class="fas fa-chevron-down"></i></button>
       <div class="detalle" id="detalle2">
         <ul>
-          <li><strong>Requisitos:</strong> DNI vigente y en buen estado, comprobante de pago.</li>
-          <li><strong>Costo:</strong> S/ 120.90 por derecho de expedición.</li>
-          <li><strong>Dónde pagar:</strong> Págalo.pe con código 01810 o Banco de la Nación.</li>
-          <li><strong>Cita:</strong> Programa tu cita en línea: <a href="https://citaspasaporte.migraciones.gob.pe/" target="_blank">citaspasaporte.migraciones.gob.pe</a></li>
-          <li><strong>Dónde tramitar:</strong> Oficinas de Migraciones, Migracentros (Puruchuco, Villa María) o MAC a nivel nacional.</li>
-          <li><strong>Vigencia:</strong> 10 años para mayores de edad.</li>
-          <li><strong>Consejo:</strong> Si tienes viaje de urgencia, puedes tramitarlo por emergencia. [reference:13]</li>
+          <li><strong>Requisitos:</strong> DNI vigente, pago de S/ 120.90 en Págalo.pe (código 01810).</li>
+          <li><strong>Cita:</strong> citaspasaporte.migraciones.gob.pe</li>
+          <li><strong>Dónde:</strong> Migraciones, Migracentros o MAC.</li>
+          <li><strong>Vigencia:</strong> 10 años.</li>
         </ul>
-        <a href="https://www.gob.pe/174-obtener-pasaporte-electronico-para-mayores-de-edad" target="_blank" class="btn-mas-info">
-          <i class="fas fa-external-link-alt"></i> Más información oficial (Migraciones)
+        <a href="https://www.gob.pe/174-obtener-pasaporte-electronico-para-mayores-de-edad" target="_blank" rel="noopener noreferrer" class="btn-mas-info">
+          <i class="fas fa-external-link-alt"></i> Más información (Migraciones)
         </a>
       </div>
     </div>
 
-    <!-- Tarjeta 3: RUC -->
+    <!-- 3. RUC -->
     <div class="tramite-card" data-color="terracota">
       <div class="icon"><i class="fas fa-file-invoice"></i></div>
       <h3>RUC (Persona Natural)</h3>
       <p>Registro Único del Contribuyente, necesario para facturar y emprender.</p>
-
       <div class="modalidad">
         <span class="pill pill-online"><i class="fas fa-wifi"></i> Online</span>
         <span class="pill pill-presencial"><i class="fas fa-building"></i> Presencial</span>
       </div>
-
-        <div class="video-tutorial">
-    <p class="video-label"><i class="fas fa-video"></i> Video tutorial</p>
-    <div class="video-wrapper">
-      <iframe 
-        src="https://www.youtube.com/embed/6m4nVtNQo08" 
-        title="Video tutorial RUC"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen
-        loading="lazy">
-      </iframe>
-    </div>
-  </div>
-
+      <div class="video-tutorial">
+        <p class="video-label"><i class="fas fa-video"></i> Video tutorial</p>
+        <div class="video-wrapper" data-video="https://www.youtube.com/embed/6m4nVtNQo08"></div>
+      </div>
       <button class="btn-ver-mas" data-target="detalle3"><span>Ver pasos</span> <i class="fas fa-chevron-down"></i></button>
       <div class="detalle" id="detalle3">
         <ul>
-          <li><strong>Requisitos:</strong> DNI, número de celular y correo electrónico. Fecha de inicio de actividades.</li>
-          <li><strong>Domicilio fiscal:</strong> Se usa el que figura en tu DNI. Si es distinto, SUNAT puede verificarlo después.</li>
-          <li><strong>Régimen tributario:</strong> Si eres persona natural con negocio, eliges entre NRUS, RER o Mype Tributario.</li>
-          <li><strong>Online:</strong> Sunat Virtual o la App Personas SUNAT. Es 100% virtual.</li>
-          <li><strong>Presencial:</strong> Centros de atención de SUNAT con cita previa.</li>
+          <li><strong>Requisitos:</strong> DNI, correo, celular y fecha de inicio de actividades.</li>
+          <li><strong>Online:</strong> SUNAT Virtual o App Personas SUNAT.</li>
+          <li><strong>Presencial:</strong> Centros de atención SUNAT con cita.</li>
           <li><strong>Costo:</strong> Gratuito.</li>
-          <li><strong>Consejo:</strong> Si vas a emitir recibos por honorarios, necesitas el RUC con renta de Cuarta Categoría.</li>
         </ul>
-        <a href="https://www.gob.pe/284-inscripcion-en-el-ruc" target="_blank" class="btn-mas-info">
-          <i class="fas fa-external-link-alt"></i> Más información oficial (SUNAT)
+        <a href="https://www.gob.pe/284-inscripcion-en-el-ruc" target="_blank" rel="noopener noreferrer" class="btn-mas-info">
+          <i class="fas fa-external-link-alt"></i> Más información (SUNAT)
         </a>
       </div>
     </div>
 
-    <!-- Tarjeta 4: SIS / ESSALUD -->
+    <!-- 4. SIS / EsSalud -->
     <div class="tramite-card" data-color="verde">
       <div class="icon"><i class="fas fa-heartbeat"></i></div>
       <h3>SIS o EsSalud</h3>
       <p>Asegúrate para tener cobertura médica gratuita o de bajo costo.</p>
-
       <div class="modalidad">
         <span class="pill pill-online"><i class="fas fa-wifi"></i> Online</span>
         <span class="pill pill-presencial"><i class="fas fa-building"></i> Presencial</span>
       </div>
-
-        <div class="video-tutorial">
-    <p class="video-label"><i class="fas fa-video"></i> Video tutorial</p>
-    <div class="video-wrapper">
-      <iframe 
-        src="https://www.youtube.com/embed/bDkSta23PEw" 
-        title="Video tutorial DNI"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen
-        loading="lazy">
-      </iframe>
-    </div>
-  </div>
-
+      <div class="video-tutorial">
+        <p class="video-label"><i class="fas fa-video"></i> Video tutorial</p>
+        <div class="video-wrapper" data-video="https://www.youtube.com/embed/bDkSta23PEw"></div>
+      </div>
       <button class="btn-ver-mas" data-target="detalle4"><span>Ver pasos</span> <i class="fas fa-chevron-down"></i></button>
       <div class="detalle" id="detalle4">
         <ul>
-          <li><strong>SIS – Requisitos:</strong> DNI o Carné de Extranjería. No tener otro seguro de salud.</li>
-          <li><strong>SIS – Afiliación virtual:</strong> Ingresa a la plataforma, llena el formulario, confirma con el código que llega a tu correo. En menos de 60 minutos te confirman.</li>
-          <li><strong>SIS – Planes:</strong> <strong>SIS Gratuito</strong> (si estás en pobreza/pobreza extrema según SISFOH) o <strong>SIS Para Todos</strong> (si no tienes otro seguro).</li>
-          <li><strong>EsSalud – Seguro Potestativo (+SALUD):</strong> Para trabajadores independientes que puedan aportar de forma autónoma.</li>
-          <li><strong>EsSalud – Requisitos:</strong> Formulario de afiliación, DNI, contar con RUC.</li>
-          <li><strong>EsSalud – Dónde:</strong> Oficinas de Seguros y Prestaciones Económicas (OSPE) de EsSalud.</li>
-          <li><strong>Consejo:</strong> Consulta si ya tienes seguro de salud en la web de SUSALUD antes de afiliarte.</li>
+          <li><strong>SIS:</strong> Afiliación virtual en sis.gob.pe. Requisitos: DNI, no tener otro seguro.</li>
+          <li><strong>EsSalud:</strong> Automático si trabajas en planilla. Independientes: +SALUD.</li>
+          <li><strong>Consejo:</strong> Verifica tu cobertura en SUSALUD.</li>
         </ul>
-        <a href="https://www.gob.pe/institucion/sis/campañas/139622-afiliacion-virtual-al-sis" target="_blank" class="btn-mas-info">
+        <a href="https://www.gob.pe/institucion/sis/campañas/139622-afiliacion-virtual-al-sis" target="_blank" rel="noopener noreferrer" class="btn-mas-info">
           <i class="fas fa-external-link-alt"></i> Más información del SIS
-        </a>
-        <a href="https://www.gob.pe/239-certificado-unico-laboral-para-jovenes-certijoven" target="_blank" class="btn-mas-info" style="margin-top:0.5rem;">
-          <i class="fas fa-external-link-alt"></i> Más información de EsSalud
         </a>
       </div>
     </div>
 
-    <!-- Tarjeta 5: Cuenta bancaria -->
+    <!-- 5. Cuenta bancaria -->
     <div class="tramite-card" data-color="marron">
       <div class="icon"><i class="fas fa-university"></i></div>
       <h3>Cuenta bancaria</h3>
       <p>Abre tu primera cuenta de ahorros o sueldo para manejar tu dinero.</p>
-
       <div class="modalidad">
         <span class="pill pill-online"><i class="fas fa-wifi"></i> Online</span>
         <span class="pill pill-presencial"><i class="fas fa-building"></i> Presencial</span>
       </div>
-
-        <div class="video-tutorial">
-    <p class="video-label"><i class="fas fa-video"></i> Video tutorial</p>
-    <div class="video-wrapper">
-      <iframe 
-        src="https://www.youtube.com/embed/fTe-a8QnznQ" 
-        title="Video tutorial DNI"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen
-        loading="lazy">
-      </iframe>
-    </div>
-  </div>
-
+      <div class="video-tutorial">
+        <p class="video-label"><i class="fas fa-video"></i> Video tutorial</p>
+        <div class="video-wrapper" data-video="https://www.youtube.com/embed/fTe-a8QnznQ"></div>
+      </div>
       <button class="btn-ver-mas" data-target="detalle5"><span>Ver pasos</span> <i class="fas fa-chevron-down"></i></button>
       <div class="detalle" id="detalle5">
         <ul>
-          <li><strong>Requisitos:</strong> DNI vigente y ser mayor de 18 años. Algunos bancos piden recibo de servicio para validar domicilio.</li>
-          <li><strong>Online:</strong> Varios bancos permiten apertura 100% digital en minutos con tu DNI.</li>
-          <li><strong>Presencial:</strong> Acércate a cualquier agencia con tu DNI.</li>
-          <li><strong>Cuentas para jóvenes:</strong> Muchas son <strong>sin costo de mantenimiento</strong> y sin saldo mínimo.</li>
-          <li><strong>Beneficios:</strong> Tarjeta de débito, Plin integrado, transferencias gratuitas y compras por internet seguras.</li>
-          <li><strong>Consejo:</strong> Compara comisiones y beneficios entre bancos antes de elegir. Muchos ofrecen cuentas gratuitas para jóvenes.
+          <li><strong>Requisitos:</strong> DNI vigente, ser mayor de 18.</li>
+          <li><strong>Online:</strong> Apertura digital en varios bancos.</li>
+          <li><strong>Presencial:</strong> Cualquier agencia con DNI.</li>
+          <li><strong>Beneficios:</strong> Tarjeta de débito, Plin, sin mantenimiento (jóvenes).</li>
         </ul>
-        <a href="https://www.bbva.pe/personas/productos/cuentas/ahorro/cuenta-joven-digital-bbva.html" target="_blank" class="btn-mas-info">
+        <a href="https://www.bbva.pe/personas/productos/cuentas/ahorro/cuenta-joven-digital-bbva.html" target="_blank" rel="noopener noreferrer" class="btn-mas-info">
           <i class="fas fa-external-link-alt"></i> Ejemplo: Cuenta Joven BBVA
         </a>
       </div>
     </div>
 
-    <!-- Tarjeta 6: Voto y participación (SIN modalidad) -->
+    <!-- 6. Voto -->
     <div class="tramite-card" data-color="rojo">
       <div class="icon"><i class="fas fa-vote-yea"></i></div>
       <h3>Voto (obligatorio)</h3>
       <p>Como ciudadano, tu voto es obligatorio desde los 18 hasta los 70 años.</p>
-
-      <!-- Sin modalidad: es automático -->
-
-  <div class="video-tutorial">
-    <p class="video-label"><i class="fas fa-video"></i> Video tutorial</p>
-    <div class="video-wrapper">
-      <iframe 
-        src="https://www.youtube.com/embed/cJ5UuJJRfNQ" 
-        title="Video tutorial DNI"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen
-        loading="lazy">
-      </iframe>
-    </div>
-  </div>
-
+      <div class="video-tutorial">
+        <p class="video-label"><i class="fas fa-video"></i> Video tutorial</p>
+        <div class="video-wrapper" data-video="https://www.youtube.com/embed/cJ5UuJJRfNQ"></div>
+      </div>
       <button class="btn-ver-mas" data-target="detalle6"><span>Ver pasos</span> <i class="fas fa-chevron-down"></i></button>
       <div class="detalle" id="detalle6">
         <ul>
-          <li><strong>¿Quiénes votan?</strong> Todos los ciudadanos peruanos mayores de 18 años inscritos en el padrón electoral de RENIEC. El voto es obligatorio hasta los 70 años.</li>
-          <li><strong>Inscripción:</strong> Es automática al obtener tu DNI de mayor de edad.</li>
-          <li><strong>Multa por no votar:</strong> Es un porcentaje de la UIT. En distritos de pobreza extrema es S/ 27.50 (0.5% UIT).</li>
-          <li><strong>Restricciones:</strong> Si no pagas la multa, no puedes hacer trámites en RENIEC ni en otras entidades públicas.</li>
-          <li><strong>¿Dónde pagar?</strong> En cualquier agencia del Banco de la Nación.</li>
-          <li><strong>Consejo:</strong> Revisa tu local de votación en la web del JNE antes de cada elección.</li>
+          <li><strong>Inscripción:</strong> Automática al obtener DNI adulto.</li>
+          <li><strong>Multa por no votar:</strong> S/ 27.50 en zonas de pobreza extrema.</li>
+          <li><strong>¿Dónde pagar?</strong> Banco de la Nación.</li>
         </ul>
-        <a href="https://www.gob.pe/382-consulta-si-tienes-multas-electorales" target="_blank" class="btn-mas-info">
+        <a href="https://www.gob.pe/7768-multas-electorales-por-omision-al-sufragio" target="_blank" rel="noopener noreferrer" class="btn-mas-info">
           <i class="fas fa-external-link-alt"></i> Más información (JNE)
         </a>
       </div>
     </div>
 
-  <!-- CONSEJOS PRÁCTICOS -->
+  </div>
+
+  <!-- CONSEJOS -->
   <div class="consejos">
     <h2><i class="fas fa-lightbulb"></i> Consejos para tu vida adulta</h2>
     <div class="consejos-grid">
@@ -308,77 +254,119 @@
       <div class="consejo-item"><i class="fas fa-users"></i><span>Pregunta a tus padres o tutores si tienes dudas.</span></div>
     </div>
   </div>
-  
-  <!-- ================================
-     SECCIÓN DE OPINIONES Y RECOMENDACIONES
-     ================================ -->
-<section class="opiniones" id="opiniones">
-  <h2><i class="fas fa-comments"></i> Envíanos tu opinión o recomendación</h2>
-  <p class="opiniones-intro">
-    ¿Tienes alguna sugerencia, encontraste un error, o quieres recomendarnos un trámite que deberíamos agregar?
-    ¡Escríbenos! Tu mensaje llegará directo a nuestro panel.
-  </p>
 
-  <!-- FORMSPREE -->
-  <form action="https://formspree.io/f/moejqbrg" method="POST" class="formulario">
-    <div class="form-group">
-      <label for="nombre"><i class="fas fa-user"></i> Tu nombre</label>
-      <input type="text" id="nombre" name="nombre" placeholder="Ej: María López" required>
-    </div>
-
-    <div class="form-group">
-      <label for="correo"><i class="fas fa-envelope"></i> Tu correo (opcional)</label>
-      <input type="email" id="correo" name="correo" placeholder="tucorreo@ejemplo.com">
-    </div>
-
-    <div class="form-group">
-      <label for="tipo"><i class="fas fa-tag"></i> Tipo de mensaje</label>
-      <select id="tipo" name="tipo" required>
-        <option value="">Selecciona una opción</option>
-        <option value="Recomendación">Recomendación</option>
-        <option value="Opinión">Opinión</option>
-        <option value="Reportar error">Reportar un error</option>
-        <option value="Sugerir trámite">Sugerir un nuevo trámite</option>
-        <option value="Otro">Otro</option>
-      </select>
-    </div>
-
-    <div class="form-group">
-      <label for="mensaje"><i class="fas fa-pen"></i> Tu mensaje</label>
-      <textarea id="mensaje" name="mensaje" rows="5" placeholder="Cuéntanos qué piensas, qué mejorarías o qué trámite te gustaría ver aquí..." required minlength="10"></textarea>
-    </div>
-
-    <button type="submit" class="btn-enviar">
-      <i class="fas fa-paper-plane"></i> Enviar mensaje
-    </button>
-
-    <p class="form-nota">
-      <i class="fas fa-lock"></i> Tu información no se comparte con terceros.
-    </p>
-  </form>
-</section>
-    
-  <!-- ENLACES ÚTILES -->
+  <!-- ENLACES OFICIALES -->
   <div class="enlaces">
     <h3><i class="fas fa-link"></i> Enlaces oficiales</h3>
     <ul>
-      <li><a href="https://www.reniec.gob.pe" target="_blank"><i class="fas fa-external-link-alt"></i> RENIEC</a></li>
-      <li><a href="https://www.sunat.gob.pe" target="_blank"><i class="fas fa-external-link-alt"></i> SUNAT</a></li>
-      <li><a href="https://www.gob.pe/migraciones" target="_blank"><i class="fas fa-external-link-alt"></i> Migraciones</a></li>
-      <li><a href="https://www.sis.gob.pe" target="_blank"><i class="fas fa-external-link-alt"></i> SIS</a></li>
-      <li><a href="https://www.essalud.gob.pe" target="_blank"><i class="fas fa-external-link-alt"></i> ESSALUD</a></li>
-      <li><a href="https://www.jne.gob.pe" target="_blank"><i class="fas fa-external-link-alt"></i> JNE (voto)</a></li>
+      <li><a href="https://www.reniec.gob.pe" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> RENIEC</a></li>
+      <li><a href="https://www.sunat.gob.pe" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> SUNAT</a></li>
+      <li><a href="https://www.gob.pe/migraciones" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Migraciones</a></li>
+      <li><a href="https://www.sis.gob.pe" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> SIS</a></li>
+      <li><a href="https://www.essalud.gob.pe" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> ESSALUD</a></li>
+      <li><a href="https://www.jne.gob.pe" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> JNE</a></li>
     </ul>
   </div>
 
+  <!-- ================================
+       FORMULARIO DE OPINIONES (FORMSPREE)
+       ================================ -->
+  <section class="opiniones" id="opiniones">
+    <h2><i class="fas fa-comments"></i> Envíanos tu opinión o recomendación</h2>
+    <p class="opiniones-intro">
+      ¿Tienes alguna sugerencia, encontraste un error, o quieres recomendarnos un trámite que deberíamos agregar?
+      ¡Escríbenos! Tu mensaje llegará directo a nuestro panel.
+    </p>
+
+    <!-- ⚠️ REEMPLAZA "TU_FORM_ID" POR TU ID DE FORMSPREE -->
+    <form action="https://formspree.io/f/moejqbrg" method="POST" class="formulario">
+      <!-- Honeypot anti-spam de Formspree -->
+      <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+
+      <div class="form-group">
+        <label for="nombre"><i class="fas fa-user"></i> Tu nombre</label>
+        <input type="text" id="nombre" name="nombre" placeholder="Ej: María López" required maxlength="80" autocomplete="name">
+      </div>
+
+      <div class="form-group">
+        <label for="correo"><i class="fas fa-envelope"></i> Tu correo (opcional)</label>
+        <input type="email" id="correo" name="correo" placeholder="tucorreo@ejemplo.com" maxlength="120" autocomplete="email">
+      </div>
+
+      <div class="form-group">
+        <label for="tipo"><i class="fas fa-tag"></i> Tipo de mensaje</label>
+        <select id="tipo" name="tipo" required>
+          <option value="">Selecciona una opción</option>
+          <option value="Recomendación">Recomendación</option>
+          <option value="Opinión">Opinión</option>
+          <option value="Reportar error">Reportar un error</option>
+          <option value="Sugerir trámite">Sugerir un nuevo trámite</option>
+          <option value="Otro">Otro</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="mensaje"><i class="fas fa-pen"></i> Tu mensaje</label>
+        <textarea id="mensaje" name="mensaje" rows="5" placeholder="Cuéntanos qué piensas..." required minlength="10" maxlength="2000"></textarea>
+      </div>
+
+      <button type="submit" class="btn-enviar">
+        <i class="fas fa-paper-plane"></i> Enviar mensaje
+      </button>
+
+      <p class="form-nota">
+        <i class="fas fa-lock"></i> Tu información no se comparte con terceros.
+      </p>
+    </form>
+  </section>
+
   <!-- FOOTER -->
   <footer>
-    <p><i class="fas fa-heart" style="color: #d41b2c;"></i> Guía elaborada con información actualizada al 2026 · <i class="fas fa-peru"></i> Para adolescentes peruanos</p>
-    <p style="margin-top: 0.4rem;">Recuerda: siempre verifica los requisitos en las páginas oficiales, ya que pueden cambiar.</p>
+    <p><i class="fas fa-heart"></i> Guía elaborada con información actualizada al 2026 · 🇵🇪 Para adolescentes peruanos</p>
+    <p style="margin-top: 0.4rem;">Verifica siempre los requisitos en las páginas oficiales.</p>
   </footer>
 
 </div>
 
+<!-- ================================
+     CHAT FLOTANTE
+     ================================ -->
+<button class="chat-toggle" id="chatToggle" aria-label="Abrir chat de ayuda">
+  <i class="fas fa-comments"></i>
+  <span class="chat-badge" id="chatBadge">1</span>
+</button>
+
+<div class="chat-window" id="chatWindow" aria-hidden="true">
+  <div class="chat-header">
+    <div class="chat-avatar"><i class="fas fa-robot"></i></div>
+    <div class="chat-info">
+      <h4>Guía Bot</h4>
+      <span class="chat-status"><i class="fas fa-circle"></i> En línea</span>
+    </div>
+    <button class="chat-close" id="chatClose" aria-label="Cerrar chat">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+  <div class="chat-messages" id="chatMessages">
+    <div class="msg msg-bot">
+      <p>¡Hola! 👋 Soy el asistente de la Guía. Cuéntame, ¿qué trámite necesitas resolver?</p>
+    </div>
+    <div class="msg-quick" id="msgQuick">
+      <button data-quick="dni">¿Cómo saco mi DNI?</button>
+      <button data-quick="pasaporte">Pasaporte</button>
+      <button data-quick="ruc">RUC</button>
+      <button data-quick="sis">SIS / EsSalud</button>
+      <button data-quick="banco">Cuenta bancaria</button>
+      <button data-quick="voto">Voto</button>
+    </div>
+  </div>
+  <form class="chat-input" id="chatForm">
+    <input type="text" id="chatInput" placeholder="Escribe tu pregunta..." autocomplete="off" required maxlength="300">
+    <button type="submit" aria-label="Enviar mensaje"><i class="fas fa-paper-plane"></i></button>
+  </form>
+</div>
+
+<!-- JS propio -->
 <script src="script.js" defer></script>
 </body>
 </html>
