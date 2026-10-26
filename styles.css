@@ -1,6 +1,5 @@
 /* ================================
    PALETA PERUANA 🇵🇪
-   Rojo bandera · Blanco · Dorado inca · Terracota · Marrón andino · Verde sutil
    ================================ */
 :root {
   --peru-rojo:       #C8102E;
@@ -35,7 +34,6 @@ body {
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
-  /* Fondo cálido, tipo papel antiguo con toques peruanos */
   background:
     radial-gradient(ellipse at top left, rgba(200, 16, 46, 0.06), transparent 50%),
     radial-gradient(ellipse at bottom right, rgba(184, 134, 11, 0.08), transparent 50%),
@@ -44,7 +42,7 @@ body {
 }
 
 /* ================================
-   BLOBS DECORATIVOS (SUTILES)
+   BLOBS DECORATIVOS
    ================================ */
 .blob {
   position: fixed;
@@ -86,12 +84,10 @@ body {
   0%, 100% { transform: translate(0, 0) scale(1); }
   50%      { transform: translate(50px, 40px) scale(1.08); }
 }
-
 @keyframes float2 {
   0%, 100% { transform: translate(0, 0) scale(1); }
   50%      { transform: translate(-40px, -50px) scale(1.1); }
 }
-
 @keyframes float3 {
   0%, 100% { transform: translate(0, 0) scale(1); }
   50%      { transform: translate(-60px, 40px) scale(1.05); }
@@ -118,7 +114,7 @@ body {
 }
 
 /* ================================
-   HEADER — ROJO PERUANO CON DORADO
+   HEADER
    ================================ */
 header {
   text-align: center;
@@ -135,7 +131,6 @@ header {
   box-shadow: 0 12px 30px rgba(200, 16, 46, 0.1);
 }
 
-/* Franja decorativa andina sutil */
 header::before {
   content: "";
   position: absolute;
@@ -221,9 +216,7 @@ header p {
   color: var(--peru-rojo);
 }
 
-.intro h2 i {
-  color: var(--peru-dorado);
-}
+.intro h2 i { color: var(--peru-dorado); }
 
 .intro p {
   font-size: 1.03rem;
@@ -256,12 +249,10 @@ header p {
   margin-right: 0.4rem;
 }
 
-.leyenda-label i {
-  color: var(--peru-dorado);
-}
+.leyenda-label i { color: var(--peru-dorado); }
 
 /* ================================
-   PÍLDORAS / BADGES (TONOS PERUANOS)
+   PÍLDORAS DE MODALIDAD
    ================================ */
 .modalidad {
   display: flex;
@@ -292,21 +283,18 @@ header p {
   box-shadow: 0 5px 14px rgba(92, 58, 33, 0.15);
 }
 
-/* Online — verde andino */
 .pill-online {
   background: rgba(74, 124, 89, 0.1);
   color: var(--peru-verde);
   border-color: rgba(74, 124, 89, 0.35);
 }
 
-/* Presencial — rojo peruano */
 .pill-presencial {
   background: rgba(200, 16, 46, 0.08);
   color: var(--peru-rojo);
   border-color: rgba(200, 16, 46, 0.3);
 }
 
-/* Mixto — dorado inca */
 .pill-mixto {
   background: rgba(184, 134, 11, 0.12);
   color: #8B6508;
@@ -324,7 +312,7 @@ header p {
 }
 
 /* ================================
-   TARJETAS CON PALETA PERUANA
+   TARJETAS
    ================================ */
 .tramite-card {
   background: #FFFFFF;
@@ -342,7 +330,6 @@ header p {
   background-clip: padding-box;
 }
 
-/* Franja superior de color (más sobria) */
 .tramite-card::before {
   content: "";
   position: absolute;
@@ -353,7 +340,6 @@ header p {
   background: var(--card-color, var(--peru-rojo));
 }
 
-/* Marca de agua sutil */
 .tramite-card::after {
   content: "";
   position: absolute;
@@ -375,37 +361,14 @@ header p {
     0 2px 6px rgba(92, 58, 33, 0.06);
 }
 
-.tramite-card:hover::after {
-  opacity: 0.1;
-}
+.tramite-card:hover::after { opacity: 0.1; }
 
-/* Paleta peruana por tema */
-.tramite-card[data-color="rojo"] {
-  --card-color: var(--peru-rojo);
-  --card-color-soft: rgba(200, 16, 46, 0.08);
-}
+.tramite-card[data-color="rojo"]      { --card-color: var(--peru-rojo); }
+.tramite-card[data-color="dorado"]    { --card-color: var(--peru-dorado-cl); }
+.tramite-card[data-color="terracota"] { --card-color: var(--peru-terracota); }
+.tramite-card[data-color="verde"]     { --card-color: var(--peru-verde); }
+.tramite-card[data-color="marron"]    { --card-color: var(--peru-marron); }
 
-.tramite-card[data-color="dorado"] {
-  --card-color: var(--peru-dorado-cl);
-  --card-color-soft: rgba(184, 134, 11, 0.1);
-}
-
-.tramite-card[data-color="terracota"] {
-  --card-color: var(--peru-terracota);
-  --card-color-soft: rgba(160, 82, 45, 0.08);
-}
-
-.tramite-card[data-color="verde"] {
-  --card-color: var(--peru-verde);
-  --card-color-soft: rgba(74, 124, 89, 0.08);
-}
-
-.tramite-card[data-color="marron"] {
-  --card-color: var(--peru-marron);
-  --card-color-soft: rgba(92, 58, 33, 0.08);
-}
-
-/* Icono */
 .tramite-card .icon {
   font-size: 2.2rem;
   color: var(--card-color, var(--peru-rojo));
@@ -413,9 +376,7 @@ header p {
   transition: transform 0.3s ease;
 }
 
-.tramite-card:hover .icon {
-  transform: scale(1.12);
-}
+.tramite-card:hover .icon { transform: scale(1.12); }
 
 .tramite-card h3 {
   font-size: 1.35rem;
@@ -434,9 +395,7 @@ header p {
 /* ================================
    VIDEO TUTORIAL
    ================================ */
-.video-tutorial {
-  margin: 0.8rem 0 1rem;
-}
+.video-tutorial { margin: 0.8rem 0 1rem; }
 
 .video-label {
   font-size: 0.85rem;
@@ -468,6 +427,31 @@ header p {
   width: 100%;
   height: 100%;
   border: 0;
+}
+
+.video-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #FAF6F0;
+  text-align: center;
+  padding: 1rem;
+  gap: 0.5rem;
+}
+
+.video-placeholder i {
+  font-size: 2.5rem;
+  color: var(--peru-dorado-cl);
+  opacity: 0.7;
+}
+
+.video-placeholder span {
+  font-size: 0.85rem;
+  color: rgba(250, 246, 240, 0.75);
+  font-weight: 500;
 }
 
 .video-hint {
@@ -515,9 +499,7 @@ header p {
   margin: 0.5rem 0;
 }
 
-.tramite-card .detalle ul li {
-  margin-bottom: 0.35rem;
-}
+.tramite-card .detalle ul li { margin-bottom: 0.35rem; }
 
 .tramite-card .detalle ul li strong {
   color: var(--card-color, var(--peru-rojo));
@@ -525,7 +507,7 @@ header p {
 }
 
 /* ================================
-   BOTÓN VER MÁS — ROJO PERUANO
+   BOTÓN VER MÁS
    ================================ */
 .btn-ver-mas {
   background: var(--peru-rojo);
@@ -544,6 +526,7 @@ header p {
   align-self: flex-start;
   box-shadow: 0 3px 10px rgba(200, 16, 46, 0.25);
   letter-spacing: 0.3px;
+  font-family: inherit;
 }
 
 .btn-ver-mas:hover {
@@ -552,21 +535,51 @@ header p {
   box-shadow: 0 6px 18px rgba(200, 16, 46, 0.35);
 }
 
-.btn-ver-mas:active {
-  transform: translateY(0);
-}
+.btn-ver-mas:active { transform: translateY(0); }
 
 .btn-ver-mas i {
   font-size: 0.78rem;
   transition: transform 0.25s ease;
 }
 
-.btn-ver-mas.active i {
-  transform: rotate(180deg);
-}
+.btn-ver-mas.active i { transform: rotate(180deg); }
 
 /* ================================
-   CONSEJOS — TONO CREMA + DORADO
+   BOTÓN MÁS INFORMACIÓN
+   ================================ */
+.btn-mas-info {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding: 0.5rem 1.1rem;
+  background: transparent;
+  color: var(--peru-rojo);
+  font-weight: 600;
+  font-size: 0.88rem;
+  text-decoration: none;
+  border: 1.5px solid var(--peru-rojo);
+  border-radius: 40px;
+  transition: all 0.25s ease;
+  letter-spacing: 0.2px;
+}
+
+.btn-mas-info i {
+  font-size: 0.8rem;
+  transition: transform 0.2s ease;
+}
+
+.btn-mas-info:hover {
+  background: var(--peru-rojo);
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(200, 16, 46, 0.28);
+}
+
+.btn-mas-info:hover i { transform: scale(1.15); }
+
+/* ================================
+   CONSEJOS
    ================================ */
 .consejos {
   background: linear-gradient(135deg, #FDF8F0, #F5EFE6);
@@ -626,9 +639,7 @@ header p {
   transition: color 0.25s;
 }
 
-.consejo-item:hover i {
-  color: var(--peru-rojo);
-}
+.consejo-item:hover i { color: var(--peru-rojo); }
 
 .consejo-item span {
   font-weight: 500;
@@ -658,9 +669,7 @@ header p {
   color: var(--peru-rojo);
 }
 
-.enlaces h3 i {
-  color: var(--peru-dorado);
-}
+.enlaces h3 i { color: var(--peru-dorado); }
 
 .enlaces ul {
   list-style: none;
@@ -697,8 +706,481 @@ header p {
   box-shadow: 0 6px 16px rgba(200, 16, 46, 0.28);
 }
 
-.enlaces ul li a:hover i {
+.enlaces ul li a:hover i { color: var(--peru-dorado-cl); }
+
+/* ================================
+   FORMULARIO DE OPINIONES / RECOMENDACIONES
+   ================================ */
+.opiniones {
+  margin: 2.5rem 0 1.5rem;
+  padding: 2rem 2rem 1.8rem;
+  background: linear-gradient(135deg, #FFFFFF, #FDF8F0);
+  border-radius: 1.2rem;
+  border: 1px solid rgba(200, 16, 46, 0.12);
+  border-left: 5px solid var(--peru-rojo);
+  box-shadow: 0 6px 22px rgba(92, 58, 33, 0.06);
+}
+
+.opiniones h2 {
+  font-size: 1.55rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--peru-rojo);
+}
+
+.opiniones h2 i {
   color: var(--peru-dorado-cl);
+  text-shadow: 0 0 12px rgba(212, 160, 23, 0.35);
+}
+
+.opiniones-intro {
+  color: var(--peru-texto-soft);
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.formulario {
+  display: grid;
+  gap: 1.1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-group label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--peru-texto);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.form-group label i {
+  color: var(--peru-rojo);
+  font-size: 0.85rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  padding: 0.7rem 1rem;
+  border: 1.5px solid rgba(92, 58, 33, 0.15);
+  border-radius: 0.7rem;
+  background: #FFFFFF;
+  color: var(--peru-texto);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+  width: 100%;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--peru-rojo);
+  box-shadow: 0 0 0 3px rgba(200, 16, 46, 0.1);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 110px;
+}
+
+.form-group select { cursor: pointer; }
+
+.btn-enviar {
+  background: var(--peru-rojo);
+  color: #FFFFFF;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.85rem 1.8rem;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 14px rgba(200, 16, 46, 0.28);
+  letter-spacing: 0.3px;
+  align-self: flex-start;
+  margin-top: 0.3rem;
+}
+
+.btn-enviar:hover:not(:disabled) {
+  background: var(--peru-rojo-osc);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(200, 16, 46, 0.35);
+}
+
+.btn-enviar:active { transform: translateY(0); }
+
+.btn-enviar:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+.form-nota {
+  font-size: 0.8rem;
+  color: var(--peru-texto-soft);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.4rem;
+}
+
+.form-nota i { color: var(--peru-verde); }
+
+.form-status {
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.6rem 1rem;
+  border-radius: 0.6rem;
+  margin-top: 0.5rem;
+  display: none;
+}
+
+.form-status:not(:empty) { display: block; }
+
+.form-status-ok {
+  background: rgba(74, 124, 89, 0.1);
+  color: var(--peru-verde);
+  border: 1px solid rgba(74, 124, 89, 0.3);
+}
+
+.form-status-error {
+  background: rgba(200, 16, 46, 0.08);
+  color: var(--peru-rojo);
+  border: 1px solid rgba(200, 16, 46, 0.3);
+}
+
+/* ================================
+   CHAT FLOTANTE
+   ================================ */
+.chat-toggle {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--peru-rojo);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  box-shadow: 0 6px 20px rgba(200, 16, 46, 0.4);
+  z-index: 9998;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chat-toggle::before {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid var(--peru-rojo);
+  opacity: 0;
+  animation: chatPulse 2.5s ease-out infinite;
+}
+
+@keyframes chatPulse {
+  0%   { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+.chat-toggle:hover {
+  transform: scale(1.08);
+  box-shadow: 0 10px 30px rgba(200, 16, 46, 0.55);
+}
+
+.chat-toggle.abierto {
+  transform: rotate(90deg);
+  background: var(--peru-marron);
+}
+
+.chat-toggle.abierto::before { display: none; }
+
+.chat-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: var(--peru-dorado-cl);
+  color: #2B1810;
+  font-size: 0.7rem;
+  font-weight: 700;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #fff;
+  animation: badgeBounce 1.5s ease-in-out infinite;
+}
+
+@keyframes badgeBounce {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-4px); }
+}
+
+.chat-toggle.abierto .chat-badge { display: none; }
+
+.chat-window {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  width: 360px;
+  max-width: calc(100vw - 2rem);
+  height: 500px;
+  max-height: calc(100vh - 3rem);
+  background: #FFFFFF;
+  border-radius: 1.2rem;
+  box-shadow: 0 20px 60px rgba(92, 58, 33, 0.3);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgba(200, 16, 46, 0.15);
+  transform: translateY(20px) scale(0.95);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.chat-window.abierto {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.chat-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.2rem;
+  background: linear-gradient(135deg, var(--peru-rojo), var(--peru-rojo-osc));
+  color: #fff;
+}
+
+.chat-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+}
+
+.chat-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.chat-info h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 0 0.1rem;
+}
+
+.chat-status {
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  opacity: 0.9;
+}
+
+.chat-status i {
+  font-size: 0.5rem;
+  color: #4ade80;
+  animation: statusBlink 1.5s ease-in-out infinite;
+}
+
+@keyframes statusBlink {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.4; }
+}
+
+.chat-close {
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  color: #fff;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.chat-close:hover { background: rgba(255, 255, 255, 0.3); }
+
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  background: #FAF6F0;
+  scroll-behavior: smooth;
+}
+
+.chat-messages::-webkit-scrollbar { width: 6px; }
+
+.chat-messages::-webkit-scrollbar-thumb {
+  background: rgba(92, 58, 33, 0.2);
+  border-radius: 3px;
+}
+
+.msg {
+  max-width: 85%;
+  padding: 0.7rem 0.95rem;
+  border-radius: 1rem;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  animation: msgIn 0.25s ease;
+  word-wrap: break-word;
+}
+
+@keyframes msgIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.msg p { margin: 0; }
+
+.msg-bot {
+  background: #FFFFFF;
+  color: var(--peru-texto);
+  align-self: flex-start;
+  border: 1px solid rgba(92, 58, 33, 0.08);
+  border-bottom-left-radius: 0.25rem;
+  box-shadow: 0 2px 6px rgba(92, 58, 33, 0.04);
+}
+
+.msg-user {
+  background: var(--peru-rojo);
+  color: #FFFFFF;
+  align-self: flex-end;
+  border-bottom-right-radius: 0.25rem;
+  box-shadow: 0 3px 10px rgba(200, 16, 46, 0.25);
+}
+
+.msg-escribiendo {
+  display: flex;
+  gap: 0.25rem;
+  padding: 0.75rem 1rem;
+}
+
+.msg-escribiendo span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(92, 58, 33, 0.4);
+  animation: typing 1.2s ease-in-out infinite;
+}
+
+.msg-escribiendo span:nth-child(2) { animation-delay: 0.2s; }
+.msg-escribiendo span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typing {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+  30%           { transform: translateY(-5px); opacity: 1; }
+}
+
+.msg-quick {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.25rem;
+}
+
+.msg-quick button {
+  background: #FFFFFF;
+  border: 1px solid rgba(200, 16, 46, 0.3);
+  color: var(--peru-rojo);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.35rem 0.7rem;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.msg-quick button:hover {
+  background: var(--peru-rojo);
+  color: #FFFFFF;
+  transform: translateY(-1px);
+}
+
+.chat-input {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: #FFFFFF;
+  border-top: 1px solid rgba(92, 58, 33, 0.08);
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 0.65rem 1rem;
+  border: 1.5px solid rgba(92, 58, 33, 0.15);
+  border-radius: 40px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s;
+  background: #FAF6F0;
+}
+
+.chat-input input:focus {
+  border-color: var(--peru-rojo);
+  background: #FFFFFF;
+}
+
+.chat-input button {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--peru-rojo);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.chat-input button:hover {
+  background: var(--peru-rojo-osc);
+  transform: scale(1.08);
 }
 
 /* ================================
@@ -752,6 +1234,21 @@ footer i.fa-heart {
   .enlaces ul li a { width: 100%; justify-content: flex-start; }
   .leyenda-modalidad { font-size: 0.82rem; padding: 0.8rem 1rem; }
   .blob { filter: blur(70px); opacity: 0.2; }
+  .opiniones { padding: 1.5rem 1.2rem; }
+  .opiniones h2 { font-size: 1.25rem; }
+  .btn-enviar { width: 100%; }
+  .chat-window {
+    width: calc(100vw - 1rem);
+    height: calc(100vh - 6rem);
+    bottom: 0.5rem;
+    right: 0.5rem;
+  }
+  .chat-toggle {
+    bottom: 1rem;
+    right: 1rem;
+    width: 55px;
+    height: 55px;
+  }
 }
 
 /* ================================
@@ -762,190 +1259,5 @@ footer i.fa-heart {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-  }
-}
-
-/* ================================
-   BOTÓN "MÁS INFORMACIÓN"
-   ================================ */
-.btn-mas-info {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-top: 1rem;
-  padding: 0.5rem 1.1rem;
-  background: transparent;
-  color: var(--peru-rojo);
-  font-weight: 600;
-  font-size: 0.88rem;
-  text-decoration: none;
-  border: 1.5px solid var(--peru-rojo);
-  border-radius: 40px;
-  transition: all 0.25s ease;
-  letter-spacing: 0.2px;
-}
-
-.btn-mas-info i {
-  font-size: 0.8rem;
-  transition: transform 0.2s ease;
-}
-
-.btn-mas-info:hover {
-  background: var(--peru-rojo);
-  color: #FFFFFF;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(200, 16, 46, 0.28);
-}
-
-.btn-mas-info:hover i {
-  transform: scale(1.15);
-}
-
-/* ================================
-   SECCIÓN DE OPINIONES Y RECOMENDACIONES
-   ================================ */
-.opiniones {
-  margin: 2.5rem 0 1.5rem;
-  padding: 2rem 2rem 1.8rem;
-  background: linear-gradient(135deg, #FFFFFF, #FDF8F0);
-  border-radius: 1.2rem;
-  border: 1px solid rgba(200, 16, 46, 0.12);
-  border-left: 5px solid var(--peru-rojo);
-  box-shadow: 0 6px 22px rgba(92, 58, 33, 0.06);
-}
-
-.opiniones h2 {
-  font-size: 1.55rem;
-  font-weight: 700;
-  margin-bottom: 0.6rem;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  color: var(--peru-rojo);
-}
-
-.opiniones h2 i {
-  color: var(--peru-dorado-cl);
-  text-shadow: 0 0 12px rgba(212, 160, 23, 0.35);
-}
-
-.opiniones-intro {
-  color: var(--peru-texto-soft);
-  font-size: 1rem;
-  margin-bottom: 1.5rem;
-  line-height: 1.6;
-}
-
-/* Formulario */
-.formulario {
-  display: grid;
-  gap: 1.1rem;
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-
-.form-group label {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--peru-texto);
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-}
-
-.form-group label i {
-  color: var(--peru-rojo);
-  font-size: 0.85rem;
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.95rem;
-  padding: 0.7rem 1rem;
-  border: 1.5px solid rgba(92, 58, 33, 0.15);
-  border-radius: 0.7rem;
-  background: #FFFFFF;
-  color: var(--peru-texto);
-  transition: border-color 0.2s, box-shadow 0.2s;
-  outline: none;
-}
-
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-  border-color: var(--peru-rojo);
-  box-shadow: 0 0 0 3px rgba(200, 16, 46, 0.1);
-}
-
-.form-group textarea {
-  resize: vertical;
-  min-height: 110px;
-}
-
-.form-group select {
-  cursor: pointer;
-}
-
-/* Botón enviar */
-.btn-enviar {
-  background: var(--peru-rojo);
-  color: #FFFFFF;
-  font-family: 'Inter', sans-serif;
-  font-weight: 700;
-  font-size: 1rem;
-  padding: 0.85rem 1.8rem;
-  border: none;
-  border-radius: 40px;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.6rem;
-  transition: all 0.25s ease;
-  box-shadow: 0 4px 14px rgba(200, 16, 46, 0.28);
-  letter-spacing: 0.3px;
-  align-self: flex-start;
-  margin-top: 0.3rem;
-}
-
-.btn-enviar:hover {
-  background: var(--peru-rojo-osc);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 22px rgba(200, 16, 46, 0.35);
-}
-
-.btn-enviar:active {
-  transform: translateY(0);
-}
-
-.form-nota {
-  font-size: 0.8rem;
-  color: var(--peru-texto-soft);
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  margin-top: 0.4rem;
-}
-
-.form-nota i {
-  color: var(--peru-verde);
-}
-
-/* Responsive */
-@media (max-width: 640px) {
-  .opiniones {
-    padding: 1.5rem 1.2rem;
-  }
-  .opiniones h2 {
-    font-size: 1.25rem;
-  }
-  .btn-enviar {
-    width: 100%;
   }
 }
