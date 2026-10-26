@@ -13,20 +13,19 @@
        - Google Fonts para tipografía
        - Font Awesome desde cdnjs
        ================================ -->
-  <meta http-equiv="Content-Security-Policy"
-        content="
-          default-src 'self';
-          script-src 'self' https://cdnjs.cloudflare.com https://gc.zgo.at 'unsafe-inline';
-          style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com;
-          font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;
-          img-src 'self' data:;
-          connect-src 'self' https://formspree.io https://www.youtube.com https://steep-truth-0416proxi-gemini.fernandojosehuamancallupe.workers.dev;
-          frame-src https://www.youtube.com https://www.youtube-nocookie.com;
-          form-action 'self' https://formspree.io;
-          frame-ancestors 'none';
-          base-uri 'self';
-          object-src 'none';
-        ">
+<meta http-equiv="Content-Security-Policy"
+      content="
+        default-src 'self';
+        script-src 'self' https://cdnjs.cloudflare.com https://www.youtube.com https://s.ytimg.com 'unsafe-inline';
+        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com;
+        font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;
+        img-src 'self' data: https://i.ytimg.com https://www.youtube.com;
+        connect-src 'self' https://formspree.io https://www.youtube.com https://steep-truth-0416proxi-gemini.fernandojosehuamancallupe.workers.dev;
+        frame-src https://www.youtube.com https://www.youtube-nocookie.com;
+        form-action 'self' https://formspree.io;
+        base-uri 'self';
+        object-src 'none';
+      ">
 
   <!-- Refuerzo de políticas de referencia y permisos -->
   <meta name="referrer" content="strict-origin-when-cross-origin">
