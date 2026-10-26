@@ -87,21 +87,21 @@ document.addEventListener('DOMContentLoaded', () => {
     return div;
   }
 
-  async function preguntarAGemini(mensaje) {
-    try {
-      const respuesta = await fetch(PROXY_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ mensaje: mensaje })
-      });
-      if (!respuesta.ok) throw new Error('Error de red');
-      const data = await respuesta.json();
-      return data.respuesta || 'No obtuve respuesta.';
-    } catch (error) {
-      console.error('Error con Gemini:', error);
-      return '❌ No pude conectarme al asistente. Revisa tu conexión.';
-    }
+async function preguntarAGemini(mensaje) {
+  try {
+    const respuesta = await fetch(PROXY_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' }, // ⚠️ IMPORTANTE: text/plain
+      body: JSON.stringify({ mensaje: mensaje })
+    });
+    if (!respuesta.ok) throw new Error('Error de red');
+    const data = await respuesta.json();
+    return data.respuesta || 'No obtuve respuesta.';
+  } catch (error) {
+    console.error('Error con Gemini:', error);
+    return '❌ No pude conectarme al asistente. Revisa tu conexión.';
   }
+}
 
   async function procesarMensaje(texto) {
     const textoLimpio = texto.trim();
