@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // 1. CONFIGURACIÓN (Revisa que esté tu URL)
   // ============================================
   const PROXY_URL = 'https://script.google.com/macros/s/AKfycbwPjNRXyhqupSczcjToHnoAbLDsl7ZAPAxa5nCaltfqIzUmqHjcy10Vua73p_jyUsRO/exec'; 
-  const FORMSPREE_ID = 'https://formspree.io/f/moejqbrg"'; // ⚠️ Pon tu ID de Formspree aquí si usas el formulario
+  const FORMSPREE_ID = 'https://formspree.io/f/moejqbrg'; // ⚠️ Pon tu ID de Formspree aquí si usas el formulario
 
   // ============================================
   // 2. PROCESAR VIDEOS DE YOUTUBE
@@ -91,11 +91,20 @@ async function preguntarAGemini(mensaje) {
   try {
     const respuesta = await fetch(PROXY_URL, {
       method: 'POST',
-      headers: { 'Content-Type': 'text/plain;charset=utf-8' }, // ⚠️ IMPORTANTE: text/plain
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
       body: JSON.stringify({ mensaje: mensaje })
     });
+    
     if (!respuesta.ok) throw new Error('Error de red');
+    
     const data = await respuesta.json();
+    console.log("Respuesta de Google Apps Script:", data); // 👈 Esto nos dirá la verdad en la consola
+
+    // Si Google devuelve un error, lo mostramos en el chat
+    if (data.error) {
+      return "⚠️ Error de Google: " + data.error;
+    }
+
     return data.respuesta || 'No obtuve respuesta.';
   } catch (error) {
     console.error('Error con Gemini:', error);
