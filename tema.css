@@ -263,3 +263,37 @@ html, body { overflow-x: clip; max-width: 100%; }
     padding: 12px 16px;
   }
 }
+
+.translate-widget {
+  margin-left: auto;
+  margin-right: 15px;
+  background: #fff;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  padding: 2px 8px;
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+/* Ocultar la barra fea de Google */
+.goog-te-banner-frame { display: none !important; }
+body { top: 0px !important; }
+.goog-logo-link { display: none !important; }
+.goog-te-gadget { font-family: var(--ff-body) !important; font-size: 0px !important; color: transparent !important; }
+.goog-te-gadget .goog-te-combo {
+  font-family: var(--ff-body);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  outline: none;
+  margin: 5px 0;
+}
+
+/* En celulares, que el traductor no ocupe todo el espacio */
+@media (max-width: 760px) {
+  .translate-widget {
+    display: none; /* Se oculta en móviles para no romper el menú */
+  }
+}
