@@ -1,10 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
   
   // ============================================
-  // 1. CONFIGURACIÓN (Revisa que esté tu URL)
+  // 1. CONFIGURACIÓN DEL CHAT (Tu URL de Google Apps Script)
   // ============================================
   const PROXY_URL = 'https://script.google.com/macros/s/AKfycbwPjNRXyhqupSczcjToHnoAbLDsl7ZAPAxa5nCaltfqIzUmqHjcy10Vua73p_jyUsRO/exec'; 
-  const FORMSPREE_ID = 'https://formspree.io/f/moejqbrg'; // ⚠️ Pon tu ID de Formspree aquí si usas el formulario
 
   // ============================================
   // 2. PROCESAR VIDEOS DE YOUTUBE
@@ -38,19 +37,82 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ============================================
-  // 3. TOGGLE DE PASOS (Ver/Ocultar)
+  // 3. FUNCIÓN MAESTRA PARA LEER EN VOZ ALTA (ACCESIBILIDAD)
   // ============================================
+  function reproducirTexto(textoParaLeer) {
+    if (!('speechSynthesis' in window)) {
+      alert("Tu navegador no soporta la lectura en voz alta.");
+      return;
+    }
+
+    window.speechSynthesis.cancel(); // Detener audios anteriores
+    const textoLimpio = textoParaLeer.replace(/[⚠️❌⏳🪪🛂🧾❤️🏦🗳️👉]/g, ''); // Limpiar emojis
+    const mensaje = new SpeechSynthesisUtterance(textoLimpio);
+
+    // Buscar voz en español (prioriza es-PE, si no hay, usa cualquier "es")
+    const voces = window.speechSynthesis.getVoices();
+    const vozElegida = 
+      voces.find(v => v.lang === 'es-PE') || 
+      voces.find(v => v.lang === 'es-MX') || 
+      voces.find(v => v.lang === 'es-ES') || 
+      voces.find(v => v.lang.startsWith('es'));
+
+    if (vozElegida) {
+      mensaje.voice = vozElegida;
+      mensaje.lang = vozElegida.lang;
+    } else {
+      mensaje.lang = 'es-ES';
+    }
+
+    mensaje.rate = 1.0; // Velocidad
+    window.speechSynthesis.speak(mensaje);
+  }
+
+  // Evento para el botón "Escuchar" de las tarjetas
   document.addEventListener('click', (e) => {
-    const btn = e.target.closest('.btn-ver-mas');
+    const btn = e.target.closest('.btn-escuchar-tramite');
     if (!btn) return;
-    e.preventDefault();
-    const targetId = btn.getAttribute('data-target');
-    const detalle = document.getElementById(targetId);
-    if (!detalle) return;
-    const ahoraVisible = detalle.classList.toggle('visible');
-    btn.classList.toggle('active', ahoraVisible);
-    const span = btn.querySelector('span');
-    if (span) span.textContent = ahoraVisible ? 'Ocultar pasos' : 'Ver pasos';
+
+    const card = btn.closest('.tramite-card');
+    if (!card) return;
+
+    if (btn.classList.contains('leyendo')) {
+      window.speechSynthesis.cancel();
+      document.querySelectorAll('.btn-escuchar-tramite').forEach(b => {
+        b.classList.remove('leyendo');
+        b.innerHTML = '<i class="fas fa-volume-up"></i> Escuchar';
+      });
+      return;
+    }
+
+    window.speechSynthesis.cancel();
+    document.querySelectorAll('.btn-escuchar-tramite').forEach(b => {
+      b.classList.remove('leyendo');
+      b.innerHTML = '<i class="fas fa-volume-up"></i> Escuchar';
+    });
+
+    const titulo = card.querySelector('h3').innerText;
+    const descripcion = card.querySelector('p').innerText; 
+    let pasosTexto = "";
+    const detalle = card.querySelector('.detalle');
+    if (detalle) pasosTexto = detalle.innerText;
+
+    let textoParaLeer = `${titulo}. ${descripcion}. ${pasosTexto}`;
+    
+    btn.classList.add('leyendo');
+    btn.innerHTML = '<i class="fas fa-stop"></i> Detener';
+
+    reproducirTexto(textoParaLeer);
+
+    setTimeout(() => {
+      const checkSpeech = setInterval(() => {
+        if (!window.speechSynthesis.speaking) {
+          btn.classList.remove('leyendo');
+          btn.innerHTML = '<i class="fas fa-volume-up"></i> Escuchar';
+          clearInterval(checkSpeech);
+        }
+      }, 1000);
+    }, 1000);
   });
 
   // ============================================
@@ -73,6 +135,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const p = document.createElement('p');
     p.textContent = texto; 
     div.appendChild(p);
+
+    if (quien === 'bot') {
+      const btnAudio = document.createElement('button');
+      btnAudio.className = 'btn-audio';
+      btnAudio.innerHTML = '<i class="fas fa-volume-up"></i>';
+      btnAudio.title = 'Escuchar mensaje';
+      btnAudio.setAttribute('aria-label', 'Escuchar mensaje en voz alta');
+      btnAudio.onclick = () => reproducirTexto(texto);
+      div.appendChild(btnAudio);
+    }
+
     mensajes.appendChild(div);
     mensajes.scrollTop = mensajes.scrollHeight;
     return div;
@@ -87,30 +160,26 @@ document.addEventListener('DOMContentLoaded', () => {
     return div;
   }
 
-async function preguntarAGemini(mensaje) {
-  try {
-    const respuesta = await fetch(PROXY_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-      body: JSON.stringify({ mensaje: mensaje })
-    });
-    
-    if (!respuesta.ok) throw new Error('Error de red');
-    
-    const data = await respuesta.json();
-    console.log("Respuesta de Google Apps Script:", data); // 👈 Esto nos dirá la verdad en la consola
+  async function preguntarAGemini(mensaje) {
+    try {
+      const respuesta = await fetch(PROXY_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({ mensaje: mensaje })
+      });
+      if (!respuesta.ok) throw new Error('Error de red');
+      const data = await respuesta.json();
 
-    // Si Google devuelve un error, lo mostramos en el chat
-    if (data.error) {
-      return "⚠️ Error de Google: " + data.error;
+      if (data.error) {
+        if (data.error.includes("high demand")) return "⏳ El asistente está muy solicitado. Intenta de nuevo en un ratito.";
+        return "⚠️ Error: " + data.error;
+      }
+      return data.respuesta || 'No obtuve respuesta.';
+    } catch (error) {
+      console.error('Error con Gemini:', error);
+      return '❌ No pude conectarme al asistente. Revisa tu conexión.';
     }
-
-    return data.respuesta || 'No obtuve respuesta.';
-  } catch (error) {
-    console.error('Error con Gemini:', error);
-    return '❌ No pude conectarme al asistente. Revisa tu conexión.';
   }
-}
 
   async function procesarMensaje(texto) {
     const textoLimpio = texto.trim();
@@ -148,9 +217,8 @@ async function preguntarAGemini(mensaje) {
 
   cerrar.addEventListener('click', cerrarChat);
 
-  // EVENTO PARA ENVIAR EL MENSAJE
   form.addEventListener('submit', (e) => {
-    e.preventDefault(); // Evita que la página se recargue
+    e.preventDefault();
     const texto = input.value;
     input.value = '';
     procesarMensaje(texto);
@@ -159,10 +227,12 @@ async function preguntarAGemini(mensaje) {
   quickBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       input.value = btn.textContent.trim();
-      // Simulamos que el usuario presionó enter
       form.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
     });
   });
 
-  console.log('✅ Script cargado correctamente. Chat listo.');
+  // Pequeño arreglo para que las voces carguen bien en algunos navegadores
+  window.speechSynthesis.onvoiceschanged = () => {
+    window.speechSynthesis.getVoices();
+  };
 });
