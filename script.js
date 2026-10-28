@@ -239,20 +239,36 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnQuechua = document.getElementById('btnQuechua');
   const btnEspanol = document.getElementById('btnEspanol');
 
-  function forzarIdioma(codigoIdioma) {
-    if (codigoIdioma === 'es') {
-      document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+  function traducirPagina(codigoIdioma) {
+    // Buscamos el menú desplegable oculto de Google Translate
+    const combo = document.querySelector('.goog-te-combo');
+
+    if (combo) {
+      // Si existe, le cambiamos el idioma y disparamos el evento
+      combo.value = codigoIdioma;
+      combo.dispatchEvent(new Event('change'));
+      
+      // Si el usuario elige español, a veces Google no vuelve al original de una, 
+      // así que hacemos una pequeña recarga de respaldo.
+      if (codigoIdioma === 'es') {
+        setTimeout(() => {
+          if (document.body.style.top !== '0px') {
+             document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+             window.location.reload();
+          }
+        }, 500);
+      }
     } else {
-      document.cookie = `googtrans=/es/${codigoIdioma}; path=/;`;
+      // Si el combo no existe (por ejemplo, porque un AdBlock lo bloqueó),
+      // usamos el método de la cookie y recargamos.
+      if (codigoIdioma === 'es') {
+        document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+      } else {
+        document.cookie = `googtrans=/es/${codigoIdioma}; path=/;`;
+      }
+      window.location.reload();
     }
-    window.location.reload();
   }
 
-  if (btnQuechua) btnQuechua.addEventListener('click', () => forzarIdioma('qu'));
-  if (btnEspanol) btnEspanol.addEventListener('click', () => forzarIdioma('es'));
-
-  // Arreglo para voces
-  window.speechSynthesis.onvoiceschanged = () => {
-    window.speechSynthesis.getVoices();
-  };
-});
+  if (btnQuechua) btnQuechua.addEventListener('click', () => traducirPagina('qu'));
+  if (btnEspanol) btnEspanol.addEventListener('click', () => traducirPagina('es'));
