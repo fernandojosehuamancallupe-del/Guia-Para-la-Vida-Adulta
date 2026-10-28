@@ -19,7 +19,7 @@
         script-src 'self' https://cdnjs.cloudflare.com https://www.youtube.com https://s.ytimg.com 'unsafe-inline';
         style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com;
         font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;
-        img-src 'self' data: https://i.ytimg.com https://www.youtube.com;
+        img-src 'self' data: https://i.ytimg.com https://www.youtube.com https://api.dicebear.com;
        connect-src 'self' https://formspree.io https://www.youtube.com https://script.google.com https://script.googleusercontent.com;
         frame-src https://www.youtube.com https://www.youtube-nocookie.com;
         form-action 'self' https://formspree.io;
@@ -44,24 +44,55 @@
         referrerpolicy="no-referrer">
 
   <!-- CSS propio -->
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="tema.css">
 </head>
 <body>
 
-<!-- Blobs decorativos -->
-<div class="blob blob-1"></div>
-<div class="blob blob-2"></div>
-<div class="blob blob-3"></div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+  <symbol id="s-chakana" viewBox="0 0 100 100"><path fill="currentColor" fill-rule="evenodd" d="M35 0H65V20H80V35H100V65H80V80H65V100H35V80H20V65H0V35H20V20H35Z M50 37a13 13 0 1 0 0 26a13 13 0 1 0 0-26Z"/></symbol>
+  <symbol id="s-sun" viewBox="0 0 100 100"><circle cx="50" cy="50" r="20" fill="currentColor"/><g stroke="currentColor" stroke-width="7" stroke-linecap="round"><path d="M80 50H96M71.2 28.8L82.5 17.5M50 20V4M28.8 28.8L17.5 17.5M20 50H4M28.8 71.2L17.5 82.5M50 80V96M71.2 71.2L82.5 82.5"/></g></symbol>
+  <symbol id="s-mount" viewBox="0 0 100 100"><path fill="currentColor" d="M0 100L35 30L55 65L75 15L100 100Z"/></symbol>
+  <symbol id="s-ring" viewBox="0 0 100 100"><circle cx="50" cy="50" r="38" fill="none" stroke="currentColor" stroke-width="16"/></symbol>
+  <symbol id="s-dia" viewBox="0 0 100 100"><path fill="currentColor" d="M50 0L100 50L50 100L0 50Z"/></symbol>
+  <symbol id="s-semi" viewBox="0 0 100 100"><path fill="currentColor" d="M0 100A50 50 0 0 1 100 100Z"/></symbol>
+  <symbol id="s-zig" viewBox="0 0 110 25"><path d="M5 20L20 5L35 20L50 5L65 20L80 5L95 20" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</defs></svg>
+
+<div class="bg-shapes" aria-hidden="true">
+  <svg class="bs b1"><use href="#s-dia"/></svg><svg class="bs b2"><use href="#s-ring"/></svg>
+  <svg class="bs b3"><use href="#s-chakana"/></svg><svg class="bs b4"><use href="#s-semi"/></svg>
+</div>
+
+
+<nav class="site-nav" id="bloquesNav" aria-label="Categorías">
+  <a class="brand" href="#top"><i class="fas fa-flag"></i> Guía Adulto Joven</a>
+  <div class="nav-links" id="navLinks"></div>
+</nav>
 
 <div class="container">
 
   <!-- HEADER -->
-  <header>
-    <h1><i class="fas fa-flag"></i> Guía Adulto Joven</h1>
-    <p>Todo lo que necesitas saber para empezar tu vida independiente en Perú</p>
-    <span class="badge-peru"><i class="fas fa-map-pin"></i> Hecho para adolescentes peruanos</span>
+  <header class="box hero" id="top">
+    <div class="hero-shapes" aria-hidden="true">
+      <svg class="sh sh-chakana"><use href="#s-chakana"/></svg><svg class="sh sh-sun"><use href="#s-sun"/></svg>
+      <svg class="sh sh-mount"><use href="#s-mount"/></svg><svg class="sh sh-ring"><use href="#s-ring"/></svg>
+      <svg class="sh sh-zig"><use href="#s-zig"/></svg><svg class="sh sh-dia"><use href="#s-dia"/></svg>
+      <svg class="sh sh-semi"><use href="#s-semi"/></svg>
+    </div>
+    <div class="hero-copy">
+      <span class="badge-peru"><i class="fas fa-map-pin"></i> Hecho para jóvenes peruanos</span>
+      <h1>Tu vida <span class="hl">adulta</span>, paso a paso</h1>
+      <p>Todo lo que necesitas para empezar tu vida independiente en el Perú: DNI, trabajo, brevete, alquiler, becas y más.</p>
+      <div class="hero-cta">
+        <a class="btn-hero" href="#basico">Ver trámites <i class="fas fa-arrow-down"></i></a>
+        <button class="btn-hero alt" id="heroChat" type="button"><i class="fas fa-comments"></i> Pregúntale al asistente</button>
+      </div>
+    </div>
   </header>
 
+  <section class="box" style="--z:19;--bg:var(--derby)">
   <!-- INTRO -->
   <div class="intro">
     <h2><i class="fas fa-rocket"></i> ¡Bienvenido a la vida adulta!</h2>
@@ -76,17 +107,20 @@
     <span class="pill pill-mixto"><i class="fas fa-random"></i> Online y Presencial</span>
   </div>
 
+  </section>
+
   <!-- TRÁMITES -->
-  <h2 style="font-size: 1.6rem; font-weight: 600; margin: 0.5rem 0 0.2rem;">
-    <i class="fas fa-clipboard-list" style="color: var(--peru-rojo); margin-right: 0.7rem;"></i>Trámites esenciales
-  </h2>
-  <p style="color: var(--peru-texto-soft); margin-bottom: 1.5rem;">Haz clic en "Ver pasos" para conocer los detalles de cada trámite.</p>
+  <section class="bloque box" id="basico" style="--z:18;--bg:var(--ecru)">
+  <div class="bloque-head"><div><h2>Trámites esenciales</h2><p>Haz clic en "Ver pasos" para conocer los detalles de cada trámite.</p></div></div>
 
   <div class="tramites-grid" id="tramitesGrid">
 
     <!-- 1. DNI -->
     <div class="tramite-card" data-color="rojo">
       <div class="icon"><i class="fas fa-id-card"></i></div>
+            <button class="btn-escuchar-tramite" aria-label="Escuchar información del trámite">
+        <i class="fas fa-volume-up"></i> Escuchar
+      </button>
       <h3>DNI (Mayor de edad)</h3>
       <p>Obtén tu Documento Nacional de Identidad como ciudadano peruano adulto.</p>
       <div class="modalidad">
@@ -114,6 +148,9 @@
     <!-- 2. Pasaporte -->
     <div class="tramite-card" data-color="dorado">
       <div class="icon"><i class="fas fa-passport"></i></div>
+            <button class="btn-escuchar-tramite" aria-label="Escuchar información del trámite">
+        <i class="fas fa-volume-up"></i> Escuchar
+      </button>
       <h3>Pasaporte</h3>
       <p>Para viajar al extranjero y realizar trámites internacionales.</p>
       <div class="modalidad">
@@ -140,6 +177,9 @@
     <!-- 3. RUC -->
     <div class="tramite-card" data-color="terracota">
       <div class="icon"><i class="fas fa-file-invoice"></i></div>
+            <button class="btn-escuchar-tramite" aria-label="Escuchar información del trámite">
+        <i class="fas fa-volume-up"></i> Escuchar
+      </button>
       <h3>RUC (Persona Natural)</h3>
       <p>Registro Único del Contribuyente, necesario para facturar y emprender.</p>
       <div class="modalidad">
@@ -167,6 +207,9 @@
     <!-- 4. SIS / EsSalud -->
     <div class="tramite-card" data-color="verde">
       <div class="icon"><i class="fas fa-heartbeat"></i></div>
+            <button class="btn-escuchar-tramite" aria-label="Escuchar información del trámite">
+        <i class="fas fa-volume-up"></i> Escuchar
+      </button>
       <h3>SIS o EsSalud</h3>
       <p>Asegúrate para tener cobertura médica gratuita o de bajo costo.</p>
       <div class="modalidad">
@@ -193,6 +236,9 @@
     <!-- 5. Cuenta bancaria -->
     <div class="tramite-card" data-color="marron">
       <div class="icon"><i class="fas fa-university"></i></div>
+            <button class="btn-escuchar-tramite" aria-label="Escuchar información del trámite">
+        <i class="fas fa-volume-up"></i> Escuchar
+      </button>
       <h3>Cuenta bancaria</h3>
       <p>Abre tu primera cuenta de ahorros o sueldo para manejar tu dinero.</p>
       <div class="modalidad">
@@ -220,6 +266,9 @@
     <!-- 6. Voto -->
     <div class="tramite-card" data-color="rojo">
       <div class="icon"><i class="fas fa-vote-yea"></i></div>
+            <button class="btn-escuchar-tramite" aria-label="Escuchar información del trámite">
+        <i class="fas fa-volume-up"></i> Escuchar
+      </button>
       <h3>Voto (obligatorio)</h3>
       <p>Como ciudadano, tu voto es obligatorio desde los 18 hasta los 70 años.</p>
       <div class="video-tutorial">
@@ -240,9 +289,13 @@
     </div>
 
   </div>
+  </section>
+
+  <!-- BLOQUES NUEVOS (generados por tramites.js) -->
+  <div id="bloques"></div>
 
   <!-- CONSEJOS -->
-  <div class="consejos">
+  <div class="consejos box" style="--z:10;--bg:var(--primrose)">
     <h2><i class="fas fa-lightbulb"></i> Consejos para tu vida adulta</h2>
     <div class="consejos-grid">
       <div class="consejo-item"><i class="fas fa-calendar-check"></i><span>Organiza tus documentos en una carpeta física y digital.</span></div>
@@ -255,7 +308,7 @@
   </div>
 
   <!-- ENLACES OFICIALES -->
-  <div class="enlaces">
+  <div class="enlaces box" style="--z:9;--bg:var(--water)">
     <h3><i class="fas fa-link"></i> Enlaces oficiales</h3>
     <ul>
       <li><a href="https://www.reniec.gob.pe" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> RENIEC</a></li>
@@ -270,7 +323,7 @@
   <!-- ================================
        FORMULARIO DE OPINIONES (FORMSPREE)
        ================================ -->
-  <section class="opiniones" id="opiniones">
+  <section class="opiniones box" id="opiniones" style="--z:8;--bg:var(--ecru)">
     <h2><i class="fas fa-comments"></i> Envíanos tu opinión o recomendación</h2>
     <p class="opiniones-intro">
       ¿Tienes alguna sugerencia, encontraste un error, o quieres recomendarnos un trámite que deberíamos agregar?
@@ -320,7 +373,7 @@
   </section>
 
   <!-- FOOTER -->
-  <footer>
+  <footer class="box foot" style="--z:7;--bg:var(--gable)">
     <p><i class="fas fa-heart"></i> Guía elaborada con información actualizada al 2026 · 🇵🇪 Para adolescentes peruanos</p>
     <p style="margin-top: 0.4rem;">Verifica siempre los requisitos en las páginas oficiales.</p>
   </footer>
@@ -337,11 +390,17 @@
 
 <div class="chat-window" id="chatWindow" aria-hidden="true">
   <div class="chat-header">
-    <div class="chat-avatar"><i class="fas fa-robot"></i></div>
+    <!-- Aquí pones la URL de tu imagen (puede ser un enlace de internet o una foto en tu carpeta) -->
+    <div class="chat-avatar">
+      <img src="https://api.dicebear.com/7.x/bottts/svg?seed=Felix" alt="Avatar del Asistente">
+    </div>
+    
     <div class="chat-info">
-      <h4>Guía Bot</h4>
+      <!-- Aquí cambias el nombre a tu gusto -->
+      <h4>Asistente Perú</h4> 
       <span class="chat-status"><i class="fas fa-circle"></i> En línea</span>
     </div>
+    
     <button class="chat-close" id="chatClose" aria-label="Cerrar chat">
       <i class="fas fa-times"></i>
     </button>
@@ -353,7 +412,7 @@
     <div class="msg-quick" id="msgQuick">
       <button data-quick="dni">¿Cómo saco mi DNI?</button>
       <button data-quick="pasaporte">Pasaporte</button>
-      <button data-quick="ruc">RUC</button>
+      <button data-quick="ruc">RUC</button> <!--hola-->
       <button data-quick="sis">SIS / EsSalud</button>
       <button data-quick="banco">Cuenta bancaria</button>
       <button data-quick="voto">Voto</button>
@@ -366,6 +425,8 @@
 </div>
 
 <!-- JS propio -->
+<script src="tramites.js" defer></script>
+<script src="animaciones.js" defer></script>
 <script src="script.js" defer></script>
 </body>
 </html>
