@@ -9,12 +9,12 @@
   <meta http-equiv="Content-Security-Policy"
         content="
           default-src 'self';
-          script-src 'self' https://cdnjs.cloudflare.com https://www.youtube.com https://s.ytimg.com 'unsafe-inline';
-          style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com;
+          script-src 'self' https://cdnjs.cloudflare.com https://www.youtube.com https://s.ytimg.com https://translate.google.com https://translate.googleapis.com 'unsafe-inline';
+          style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://translate.googleapis.com;
           font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;
           img-src 'self' data: https://i.ytimg.com https://www.youtube.com https://api.dicebear.com;
-          connect-src 'self' https://formspree.io https://www.youtube.com https://script.google.com https://script.googleusercontent.com;
-          frame-src https://www.youtube.com https://www.youtube-nocookie.com;
+          connect-src 'self' https://formspree.io https://www.youtube.com https://script.google.com https://script.googleusercontent.com https://translate.googleapis.com;
+          frame-src https://www.youtube.com https://www.youtube-nocookie.com https://translate.google.com;
           form-action 'self' https://formspree.io;
           base-uri 'self';
           object-src 'none';
@@ -33,6 +33,18 @@
 
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="tema.css">
+
+  <!-- Script para inicializar Google Translate en segundo plano -->
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'es',
+        includedLanguages: 'qu,es,en',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </head>
 <body>
 
@@ -54,10 +66,15 @@
 <nav class="site-nav" id="bloquesNav" aria-label="Categorías">
   <a class="brand" href="#top"><i class="fas fa-flag"></i> Guía Adulto Joven</a>
   
-  <!-- BOTÓN DE QUECHUA -->
-  <a href="#quechua" class="btn-lang" style="margin-left: auto; margin-right: 15px;">
-    <i class="fas fa-language"></i> Runasimi
-  </a>
+  <!-- BOTONES DE TRADUCCIÓN PERSONALIZADOS -->
+  <div class="lang-switch">
+    <button type="button" class="btn-lang" id="btnQuechua" title="Traducir al quechua">
+      <i class="fas fa-language"></i> Quechua
+    </button>
+    <button type="button" class="btn-lang" id="btnEspanol" title="Volver al español">
+      <i class="fas fa-undo"></i> Español
+    </button>
+  </div>
 
   <div class="nav-links" id="navLinks"></div>
 </nav>
@@ -78,7 +95,7 @@
       <p>Todo lo que necesitas para empezar tu vida independiente en el Perú: DNI, trabajo, brevete, alquiler, becas y más.</p>
       <div class="hero-cta">
         <a class="btn-hero" href="#basico">Ver trámites <i class="fas fa-arrow-down"></i></a>
-        <button class="btn-hero alt" id="heroChat" type="button"><i class="fas fa-comments"></i> Pregúntale a Wasi</button>
+        <button class="btn-hero alt" id="heroChat" type="button"><i class="fas fa-comments"></i> Pregúntale al asistente</button>
       </div>
     </div>
   </header>
@@ -96,7 +113,7 @@
     </div>
   </section>
 
-  <!-- TRÁMITES ESENCIALES -->
+  <!-- TRÁMITES ESENCIALES (Estáticos) -->
   <section class="bloque box" id="basico" style="--z:18;--bg:var(--ecru)">
     <div class="bloque-head"><div><h2>Trámites esenciales</h2><p>Haz clic en "Ver pasos" para conocer los detalles de cada trámite.</p></div></div>
     <div class="tramites-grid" id="tramitesGrid">
@@ -225,73 +242,6 @@
   <!-- BLOQUES NUEVOS (Generados por tramites.js) -->
   <div id="bloques"></div>
 
-  <!-- SECCIÓN EN QUECHUA -->
-  <section class="bloque box" id="quechua" style="--z:11;--bg:var(--wisp)">
-    <div class="bloque-head">
-      <div>
-        <h2>Runasimi Yachay <br><span style="font-size: 0.4em; color: var(--subdued);">(Guía en Quechua)</span></h2>
-        <p>Allin hamusqayki. Kay p'anqapiqa tarinki imaynatas ruwanaykipaq huk trámites nisqakunata.<br>
-        <em style="font-size: 0.8em;">(Bienvenido. Aquí encontrarás cómo hacer algunos trámites).</em></p>
-      </div>
-    </div>
-
-    <div class="tramites-grid">
-      <!-- Tarjeta 1: DNI -->
-      <div class="tramite-card" data-color="rojo">
-        <div class="icon"><i class="fas fa-id-card"></i></div>
-        <button class="btn-escuchar-tramite" aria-label="Escuchar información del trámite"><i class="fas fa-volume-up"></i> Uyariy (Escuchar)</button>
-        <h3>DNI (Documento)</h3>
-        <p><strong>¿Imaynataq DNI ruwakun?</strong><br>DNI nisqataqa RENIEC nisqapi ruwakun, 17 wataykipiñam mañakuyta atikunki.</p>
-        <div class="modalidad"><span class="pill pill-presencial"><i class="fas fa-building"></i> Presencial</span></div>
-        <button class="btn-ver-mas" data-target="detalle-qu1"><span>Willakuyta rikuy (Ver pasos)</span> <i class="fas fa-chevron-down"></i></button>
-        <div class="detalle" id="detalle-qu1">
-          <ul>
-            <li><strong>Munanakuna (Requisitos):</strong> DNI anterior (o partida de nacimiento), pago (qullqi).</li>
-            <li><strong>Maypi (Dónde):</strong> RENIEC wasipi.</li>
-            <li><strong>Hayk'aq (Vigencia):</strong> 10 wata (años).</li>
-          </ul>
-          <a href="https://www.gob.pe/250-renovar-dni-azul-o-dnie" target="_blank" rel="noopener noreferrer" class="btn-mas-info"><i class="fas fa-external-link-alt"></i> Astawan yachay (Más info)</a>
-        </div>
-      </div>
-
-      <!-- Tarjeta 2: Trabajo -->
-      <div class="tramite-card" data-color="verde">
-        <div class="icon"><i class="fas fa-briefcase"></i></div>
-        <button class="btn-escuchar-tramite" aria-label="Escuchar información del trámite"><i class="fas fa-volume-up"></i> Uyariy (Escuchar)</button>
-        <h3>Certijoven (Llamk'ay)</h3>
-        <p><strong>¿Imaynataq llamk'anapaq ruwakun?</strong><br>Certijoven nisqataqa Ministerio de Trabajo nisqapi ruwakun, mana qullqiwanchu (gratis).</p>
-        <div class="modalidad"><span class="pill pill-online"><i class="fas fa-wifi"></i> Online</span></div>
-        <button class="btn-ver-mas" data-target="detalle-qu2"><span>Willakuyta rikuy (Ver pasos)</span> <i class="fas fa-chevron-down"></i></button>
-        <div class="detalle" id="detalle-qu2">
-          <ul>
-            <li><strong>Munanakuna (Requisitos):</strong> DNI, 18 watayuq kay.</li>
-            <li><strong>Maypi (Dónde):</strong> Ministerio de Trabajo web nisqapi.</li>
-            <li><strong>Imapaq (Para qué):</strong> Llamk'ayta tarinapaq (para encontrar trabajo).</li>
-          </ul>
-          <a href="https://www.gob.pe/mtpe" target="_blank" rel="noopener noreferrer" class="btn-mas-info"><i class="fas fa-external-link-alt"></i> Astawan yachay (Más info)</a>
-        </div>
-      </div>
-
-      <!-- Tarjeta 3: Salud -->
-      <div class="tramite-card" data-color="terracota">
-        <div class="icon"><i class="fas fa-heartbeat"></i></div>
-        <button class="btn-escuchar-tramite" aria-label="Escuchar información del trámite"><i class="fas fa-volume-up"></i> Uyariy (Escuchar)</button>
-        <h3>SIS (Hampikuy)</h3>
-        <p><strong>¿Imaynataq SIS nisqaman yaykun?</strong><br>SIS nisqamanqa DNI nisqallawanmi yaykunki, hampiq wasikunapi (hospitales).</p>
-        <div class="modalidad"><span class="pill pill-online"><i class="fas fa-wifi"></i> Online</span><span class="pill pill-presencial"><i class="fas fa-building"></i> Presencial</span></div>
-        <button class="btn-ver-mas" data-target="detalle-qu3"><span>Willakuyta rikuy (Ver pasos)</span> <i class="fas fa-chevron-down"></i></button>
-        <div class="detalle" id="detalle-qu3">
-          <ul>
-            <li><strong>Munanakuna (Requisitos):</strong> DNI, mana huk seguroyuq kay.</li>
-            <li><strong>Maypi (Dónde):</strong> SIS web nisqapi o hampiq wasipi.</li>
-            <li><strong>Imapaq (Para qué):</strong> Hampikunapaq mana qullqiwanchu (salud gratis).</li>
-          </ul>
-          <a href="https://www.sis.gob.pe" target="_blank" rel="noopener noreferrer" class="btn-mas-info"><i class="fas fa-external-link-alt"></i> Astawan yachay (Más info)</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- CONSEJOS -->
   <div class="consejos box" style="--z:10;--bg:var(--primrose)">
     <h2><i class="fas fa-lightbulb"></i> Consejos para tu vida adulta</h2>
@@ -360,7 +310,9 @@
       <h4>Wasi</h4> 
       <span class="chat-status"><i class="fas fa-circle"></i> En línea</span>
     </div>
-    <button class="chat-close" id="chatClose" aria-label="Cerrar chat"><i class="fas fa-times"></i></button>
+    <button class="chat-close" id="chatClose" aria-label="Cerrar chat">
+      <i class="fas fa-times"></i>
+    </button>
   </div>
   <div class="chat-messages" id="chatMessages">
     <div class="msg msg-bot">
@@ -380,6 +332,9 @@
     <button type="submit" aria-label="Enviar mensaje"><i class="fas fa-paper-plane"></i></button>
   </form>
 </div>
+
+<!-- Widget de Google Oculto (Solo para que funcione la traducción) -->
+<div id="google_translate_element" style="display:none;"></div>
 
 <!-- JS propio -->
 <script src="tramites.js" defer></script>
