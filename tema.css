@@ -1,23 +1,19 @@
 /* ==========================================================
-   TEMA "ANDINO MODERNO": identidad propia.
-   Índigo noche + cálido de atardecer, formas inspiradas en
-   la chakana, el sol y las montañas. Ancho completo.
-   Se carga DESPUÉS de styles.css.
+   TEMA "ANDINO MODERNO"
    ========================================================== */
 :root {
   --ink: #1E1B3A; --cream: #FFF8EE; --sun: #FFB627; --coral: #FF6B57; --turq: #1FB5A5; --lilac: #A99BFF;
-  /* nombres usados en el HTML/JS (remapeados a la paleta nueva) */
   --gable: var(--ink); --ecru: #FFF1D6; --wattle: var(--sun); --tangerine: var(--coral); --cerulean: var(--turq);
   --primrose: #FFEBB8; --derby: #FFD9CF; --water: #CDF1EB; --wisp: #E6E1FF; --melanie: #FFD1DC;
   --subdued: rgba(30,27,58,.68);
   --ff-body: 'Bricolage Grotesque', 'Inter', sans-serif;
   --px: clamp(20px, 4.5vw, 80px);
   --r: clamp(28px, 4vw, 52px);
-  /* compatibilidad con styles.css */
   --peru-rojo: #FF6B57; --peru-rojo-osc: #D94A38; --peru-dorado: #E09A00; --peru-dorado-cl: #FFB627;
   --peru-terracota: #E8553F; --peru-marron: #6C5CE7; --peru-verde: #1FB5A5;
   --peru-crema: #FFF8EE; --peru-hueso: #FFF1D6; --peru-texto: #1E1B3A; --peru-texto-soft: rgba(30,27,58,.7);
 }
+
 html { scroll-padding-top: 96px; }
 body { padding: 0; font-family: var(--ff-body); color: var(--ink); line-height: 1.4; -webkit-font-smoothing: antialiased;
   background-color: var(--cream); background-image: radial-gradient(rgba(30,27,58,.08) 1.3px, transparent 1.4px); background-size: 24px 24px; background-attachment: fixed; }
@@ -26,7 +22,7 @@ body { padding: 0; font-family: var(--ff-body); color: var(--ink); line-height: 
 ::selection { background: var(--sun); color: var(--ink); }
 h1, h2, h3, h4 { font-family: var(--ff-body); font-weight: 700; color: inherit; }
 
-/* ---------- Formas de fondo (fijas) ---------- */
+/* Formas de fondo */
 .bg-shapes { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
 .bs { position: absolute; aspect-ratio: 1; opacity: .5; }
 .b1 { width: 70px; left: 2%; top: 30%; color: var(--turq); animation: bob 7s ease-in-out infinite; }
@@ -34,7 +30,7 @@ h1, h2, h3, h4 { font-family: var(--ff-body); font-weight: 700; color: inherit; 
 .b3 { width: 110px; left: 1%; bottom: 8%; color: var(--coral); animation: spin 45s linear infinite reverse; }
 .b4 { width: 100px; right: 3%; top: 12%; color: var(--sun); animation: drift 9s ease-in-out infinite; }
 
-/* ---------- Menú flotante ---------- */
+/* Menú flotante */
 .site-nav { position: fixed; top: 12px; left: clamp(10px, 2vw, 28px); right: clamp(10px, 2vw, 28px); z-index: 100; display: flex; align-items: center; gap: 16px;
   padding: 8px 10px 8px 14px; background: rgba(255,248,238,.88); backdrop-filter: blur(14px); border: 2px solid var(--ink); border-radius: 999px; box-shadow: 4px 4px 0 var(--ink); }
 .brand { flex: none; display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 19px; letter-spacing: -.02em; color: var(--ink); text-decoration: none; }
@@ -44,9 +40,18 @@ h1, h2, h3, h4 { font-family: var(--ff-body); font-weight: 700; color: inherit; 
 .nav-links a { flex: none; padding: 8px 15px; border-radius: 999px; font-size: 15px; font-weight: 600; color: var(--ink); text-decoration: none; transition: background .2s, transform .2s; }
 .nav-links a:hover { background: var(--sun); transform: translateY(-2px); }
 
-/* ---------- Portada a pantalla completa ---------- */
-.box.box { position: relative; z-index: 1; width: auto; max-width: none; margin: clamp(8px, 1.2vw, 18px); border: 0; box-shadow: none; background: var(--bg, #fff); color: var(--ink);
-  border-radius: var(--r); padding: clamp(56px, 8vw, 120px) var(--px); overflow: hidden; }
+/* Botón del menú para Quechua */
+.btn-lang {
+  background: var(--sun); color: var(--ink); border: 2px solid var(--ink); border-radius: 999px;
+  padding: 8px 16px; font-family: var(--ff-body); font-weight: 700; font-size: 14px;
+  display: inline-flex; align-items: center; gap: 6px; box-shadow: 3px 3px 0 var(--ink);
+  transition: all 0.15s ease; text-decoration: none;
+}
+.btn-lang:hover { transform: translate(-2px, -2px); box-shadow: 5px 5px 0 var(--ink); }
+.btn-lang:active { transform: translate(0, 0); box-shadow: 1px 1px 0 var(--ink); }
+
+/* Portada */
+.box.box { position: relative; z-index: 1; width: auto; max-width: none; margin: clamp(8px, 1.2vw, 18px); border: 0; box-shadow: none; background: var(--bg, #fff); color: var(--ink); border-radius: var(--r); padding: clamp(56px, 8vw, 120px) var(--px); overflow: hidden; }
 header.hero.box { background: transparent; min-height: 100svh; margin: 0; border-radius: 0; display: flex; align-items: center; padding: 120px var(--px) 70px; overflow: hidden; text-align: left; }
 .hero-copy { position: relative; z-index: 2; width: min(1000px, 100%); }
 .badge-peru { display: inline-flex; align-items: center; gap: 8px; padding: .55em 1.1em; margin-bottom: 22px; font: 700 15px var(--ff-body); background: #fff; color: var(--ink); border: 2px solid var(--ink); border-radius: 999px; box-shadow: none; }
@@ -73,14 +78,14 @@ header.hero p { font-size: clamp(19px, 2.2vw, 30px); line-height: 1.25; font-wei
 .sh-dia { width: min(5vw, 76px); right: 41%; bottom: 24%; color: var(--ink); animation: bob 5s ease-in-out infinite; }
 .sh-semi { width: min(15vw, 210px); left: 2%; bottom: 3%; color: var(--lilac); animation: bob 8s ease-in-out infinite; }
 
-/* ---------- Marquesina ---------- */
+/* Marquesina */
 .marquee { position: relative; z-index: 3; overflow: hidden; margin: -10px 0 30px; padding: 16px 0; background: var(--ink); color: var(--cream); transform: rotate(-1.6deg) scale(1.03); border-block: 3px solid var(--sun); }
 .marquee-track { display: flex; width: max-content; animation: marquee 32s linear infinite; }
 .marquee span { font: 700 clamp(22px, 3vw, 38px) var(--ff-body); letter-spacing: -.01em; padding: 0 26px; white-space: nowrap; }
 .marquee span::after { content: "✦"; margin-left: 52px; color: var(--sun); }
 .marquee:hover .marquee-track { animation-play-state: paused; }
 
-/* ---------- Secciones ---------- */
+/* Secciones y Tarjetas */
 .bloque-head { display: block; margin-bottom: clamp(28px, 4vw, 56px); position: relative; z-index: 1; }
 .bloque-ico { display: none; }
 .bloque-head h2, .intro h2, .consejos h2, .opiniones h2 { font-size: clamp(38px, 6.5vw, 96px); line-height: .95; letter-spacing: -.025em; margin: 0 0 .25em; }
@@ -89,14 +94,15 @@ header.hero p { font-size: clamp(19px, 2.2vw, 30px); line-height: 1.25; font-wei
 .intro, .leyenda-modalidad { background: none; box-shadow: none; border: 0; padding: 0; border-radius: 0; max-width: none; position: relative; z-index: 1; }
 .leyenda-modalidad { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
 .leyenda-label { font-weight: 700; }
+
 .deco { position: absolute; top: clamp(18px, 3vw, 44px); right: var(--px); width: clamp(54px, 9vw, 140px); aspect-ratio: 1; z-index: 0; pointer-events: none; animation: bob 7s ease-in-out infinite; }
 .d0 { color: var(--coral); } .d1 { color: var(--ink); animation-name: spin; animation-duration: 40s; animation-timing-function: linear; }
 .d2 { color: var(--turq); animation-name: drift; } .d3 { color: var(--lilac); } .d4 { color: var(--sun); animation-name: spin; animation-duration: 30s; animation-timing-function: linear; }
+
 footer.foot.box { background: var(--ink); color: var(--cream); margin-bottom: clamp(8px, 1.2vw, 18px); }
 footer.foot p { color: var(--cream); font-weight: 600; font-size: 18px; }
 footer.foot i { color: var(--sun); }
 
-/* ---------- Tarjetas (borde y sombra sólida) ---------- */
 .tramites-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 290px), 1fr)); gap: 24px; align-items: start; position: relative; z-index: 1; }
 .tramite-card { --ic: var(--sun); background: #fff; color: var(--ink); padding: 26px; border: 2px solid var(--ink); border-radius: 28px; box-shadow: 5px 5px 0 var(--ink); transition: transform .18s, box-shadow .18s; }
 .tramite-card::before, .tramite-card::after { display: none; }
@@ -113,7 +119,7 @@ footer.foot i { color: var(--sun); }
 .video-label { font-weight: 700; font-size: 15px; margin-bottom: 8px; }
 .video-wrapper { border: 2px solid var(--ink); border-radius: 18px; overflow: hidden; }
 
-/* ---------- Botones y pills ---------- */
+/* Botones y pills */
 .pill, .btn-ver-mas, .btn-enviar, .btn-mas-info { border-radius: 999px; font-family: var(--ff-body); font-weight: 700; }
 .pill { padding: .28em .85em; font-size: 13.5px; border: 2px solid var(--ink); background: #fff; color: var(--ink); }
 .pill-online { background: var(--turq); } .pill-presencial { background: var(--sun); } .pill-mixto { background: var(--lilac); }
@@ -123,21 +129,25 @@ footer.foot i { color: var(--sun); }
 .btn-mas-info { display: inline-flex; align-items: center; gap: 8px; margin-top: 14px; padding: .5em 1.1em; font-size: 15px; background: transparent; color: var(--ink); border: 2px solid var(--ink); transition: .2s; }
 .btn-mas-info:hover { background: var(--ink); color: var(--cream); }
 
-/* ---------- Consejos, enlaces, formulario ---------- */
+/* Formulario, Enlaces, Consejos */
 .consejos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; position: relative; z-index: 1; }
-.consejo-item { background: #fff; border: 2px solid var(--ink); border-radius: 22px; box-shadow: 4px 4px 0 var(--ink); font-weight: 600; color: var(--ink); }
-.consejo-item i { color: var(--coral); }
+.consejo-item { background: #fff; border: 2px solid var(--ink); border-radius: 22px; box-shadow: 4px 4px 0 var(--ink); font-weight: 600; color: var(--ink); padding: 20px; display: flex; align-items: center; gap: 14px;}
+.consejo-item i { color: var(--coral); font-size: 24px;}
 .enlaces h3 { font-size: clamp(32px, 5vw, 64px); line-height: 1; letter-spacing: -.025em; margin-bottom: 26px; position: relative; z-index: 1; }
 .enlaces ul { display: flex; flex-wrap: wrap; gap: 10px; list-style: none; padding: 0; margin: 0; position: relative; z-index: 1; }
 .enlaces a { display: inline-flex; gap: 8px; align-items: center; padding: .55em 1.2em; border: 2px solid var(--ink); border-radius: 999px; background: #fff; color: var(--ink); font-weight: 700; text-decoration: none; transition: .2s; }
 .enlaces a:hover { background: var(--ink); color: var(--cream); transform: translateY(-3px); }
 .formulario { max-width: 760px; margin-top: 30px; background: #fff; border: 2px solid var(--ink); border-radius: 30px; box-shadow: 6px 6px 0 var(--ink); padding: clamp(20px, 3vw, 36px); position: relative; z-index: 1; }
-.form-group label { font-weight: 700; color: var(--ink); }
-.formulario input, .formulario select, .formulario textarea { width: 100%; font: 500 17px var(--ff-body); padding: 13px 16px; background: var(--cream); color: var(--ink); border: 2px solid rgba(30,27,58,.25); border-radius: 16px; outline: none; transition: border-color .2s; }
+.form-group label { font-weight: 700; color: var(--ink); display: block; margin-bottom: 8px;}
+.formulario input, .formulario select, .formulario textarea { width: 100%; font: 500 17px var(--ff-body); padding: 13px 16px; background: var(--cream); color: var(--ink); border: 2px solid rgba(30,27,58,.25); border-radius: 16px; outline: none; transition: border-color .2s; margin-bottom: 15px;}
 .formulario input:focus, .formulario select:focus, .formulario textarea:focus { border-color: var(--ink); }
-.form-nota { color: var(--subdued); font-weight: 600; }
+.form-nota { color: var(--subdued); font-weight: 600; display: flex; align-items: center; gap: 8px;}
 
-/* ---------- Chat ---------- */
+/* Estilos específicos Quechua */
+#quechua .tramite-card h3 { color: var(--coral); }
+#quechua .tramite-card p em { color: var(--subdued); font-size: 0.9em; }
+
+/* Chat */
 .chat-toggle { background: var(--ink); color: var(--sun); border: 2px solid var(--ink); box-shadow: 4px 4px 0 var(--coral); transition: transform .15s; }
 .chat-toggle:hover { transform: scale(1.08) rotate(-4deg); }
 .chat-header { background: var(--ink); color: #fff; }
@@ -147,7 +157,7 @@ footer.foot i { color: var(--sun); }
 .msg-quick button { border: 2px solid var(--ink); border-radius: 999px; background: #fff; color: var(--ink); font: 700 14px var(--ff-body); }
 .msg-quick button:hover { background: var(--sun); }
 
-/* ---------- Animaciones ---------- */
+/* Animaciones */
 @keyframes spin { to { transform: rotate(360deg); } }
 @keyframes bob { 0%, 100% { transform: translateY(0) rotate(-5deg); } 50% { transform: translateY(-22px) rotate(5deg); } }
 @keyframes drift { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(22px, -16px); } }
@@ -156,302 +166,55 @@ footer.foot i { color: var(--sun); }
 .reveal.in { opacity: 1; transform: none; }
 .tramite-card.reveal.in { transition: opacity .6s ease var(--d, 0ms), transform .18s, box-shadow .18s; }
 
+/* Botones de Audio (Accesibilidad) */
+.btn-escuchar-tramite {
+  background: #fff; color: var(--ink); border: 2px solid var(--ink);
+  padding: 0.4rem 1rem; border-radius: 999px; font-family: var(--ff-body);
+  font-weight: 700; font-size: 0.85rem; cursor: pointer; display: inline-flex;
+  align-items: center; gap: 0.4rem; margin-bottom: 1rem; align-self: flex-start;
+  box-shadow: 3px 3px 0 var(--ink); transition: transform 0.15s, box-shadow 0.15s, background 0.2s;
+}
+.btn-escuchar-tramite:hover { background: var(--sun); transform: translate(-2px, -2px); box-shadow: 5px 5px 0 var(--ink); }
+.btn-escuchar-tramite.leyendo { background: var(--coral); color: #fff; animation: pulseAudio 1.5s infinite; }
+.btn-audio {
+  background: var(--cream); color: var(--ink); border: 1.5px solid var(--ink);
+  border-radius: 50%; width: 30px; height: 30px; display: inline-flex;
+  align-items: center; justify-content: center; cursor: pointer; margin-top: 8px;
+  font-size: 0.8rem; box-shadow: 2px 2px 0 var(--ink); transition: transform 0.15s, box-shadow 0.15s, background 0.2s;
+}
+.btn-audio:hover { background: var(--sun); transform: translate(-1px, -1px); box-shadow: 3px 3px 0 var(--ink); }
+
+@keyframes pulseAudio {
+  0% { box-shadow: 3px 3px 0 var(--ink), 0 0 0 0 rgba(255, 107, 87, 0.5); }
+  70% { box-shadow: 3px 3px 0 var(--ink), 0 0 0 10px rgba(255, 107, 87, 0); }
+  100% { box-shadow: 3px 3px 0 var(--ink), 0 0 0 0 rgba(255, 107, 87, 0); }
+}
+
+/* Ajustes y Responsive */
+.box.box { padding-bottom: clamp(48px, 6vw, 96px); }
+html, body { overflow-x: clip; max-width: 100%; }
+.btn-ver-mas { position: relative; z-index: 5; pointer-events: auto; touch-action: manipulation; }
+.tramite-card .detalle.visible { display: block !important; }
+.marquee, .deco, .hero-shapes, .bg-shapes, .sh, .bs { pointer-events: none; }
+
+@media (min-width: 768px) {
+  .chat-window { width: 420px; height: 650px; max-height: calc(100vh - 4rem); border-radius: 20px; }
+  .msg { font-size: 15px; padding: 12px 16px; max-width: 85%; }
+  .chat-header h4 { font-size: 18px; }
+  .chat-input input { font-size: 15px; padding: 12px 16px; }
+}
+
 @media (max-width: 760px) {
   .site-nav .brand span { display: none; }
   .sh { opacity: .35; } .sh-chakana { right: -18%; top: 22%; width: 70vw; } .sh-mount { width: 55vw; } .sh-zig, .sh-sun { display: none; }
   .nav-links a { padding: 8px 11px; font-size: 14px; }
+  .btn-lang { padding: 6px 10px; font-size: 12px; margin-left: auto; }
 }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
   .reveal { opacity: 1; transform: none; }
 }
 
-/* títulos y etiquetas siempre en tinta (styles.css los pintaba de rojo) */
+/* Corrección de colores sobrescritos */
 .box h2, .box h3, .bloque-head h2, .intro h2, .consejos h2, .opiniones h2, .leyenda-label, .leyenda-label i, .enlaces h3 { color: var(--ink) !important; -webkit-text-fill-color: var(--ink); background: none; }
-.box.box { padding-bottom: clamp(48px, 6vw, 96px); }
-
-/* evita desborde horizontal por las formas y la marquesina inclinada */
-html, body { overflow-x: clip; max-width: 100%; }
-
-/* "Ver pasos": siempre clicable y siempre visible al abrir */
-.btn-ver-mas { position: relative; z-index: 5; pointer-events: auto; touch-action: manipulation; }
-.tramite-card .detalle.visible { display: block !important; }
-.marquee, .deco, .hero-shapes, .bg-shapes, .sh, .bs { pointer-events: none; }
-
-.btn-escuchar-tramite {
-  background: #fff;
-  color: var(--ink);
-  border: 2px solid var(--ink);
-  padding: 0.4rem 1rem;
-  border-radius: 999px;
-  font-family: var(--ff-body);
-  font-weight: 700;
-  font-size: 0.85rem;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  margin-bottom: 1rem;
-  align-self: flex-start;
-  box-shadow: 3px 3px 0 var(--ink);
-  transition: transform 0.15s, box-shadow 0.15s, background 0.2s;
-}
-
-.btn-escuchar-tramite:hover {
-  background: var(--sun);
-  transform: translate(-2px, -2px);
-  box-shadow: 5px 5px 0 var(--ink);
-}
-
-.btn-escuchar-tramite.leyendo {
-  background: var(--coral);
-  color: #fff;
-  animation: pulseAudio 1.5s infinite;
-}
-
-/* Botón de audio dentro del chat */
-.btn-audio {
-  background: var(--cream);
-  color: var(--ink);
-  border: 1.5px solid var(--ink);
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  margin-top: 8px;
-  font-size: 0.8rem;
-  box-shadow: 2px 2px 0 var(--ink);
-  transition: transform 0.15s, box-shadow 0.15s, background 0.2s;
-}
-
-.btn-audio:hover {
-  background: var(--sun);
-  transform: translate(-1px, -1px);
-  box-shadow: 3px 3px 0 var(--ink);
-}
-
-@keyframes pulseAudio {
-  0% { box-shadow: 3px 3px 0 var(--ink), 0 0 0 0 rgba(255, 107, 87, 0.5); }
-  70% { box-shadow: 3px 3px 0 var(--ink), 0 0 0 10px rgba(255, 107, 87, 0); }
-  100% { box-shadow: 3px 3px 0 var(--ink), 0 0 0 0 rgba(255, 107, 87, 0); }
-}
-
-@media (min-width: 768px) {
-  .chat-window {
-    width: 420px; /* Más ancho */
-    height: 650px; /* Más alto */
-    max-height: calc(100vh - 4rem);
-    border-radius: 20px;
-  }
-  
-  /* Textos un poco más grandes para leer mejor */
-  .msg {
-    font-size: 15px;
-    padding: 12px 16px;
-    max-width: 85%;
-  }
-
-  .chat-header h4 {
-    font-size: 18px;
-  }
-
-  .chat-input input {
-    font-size: 15px;
-    padding: 12px 16px;
-  }
-}
-
-.translate-widget {
-  margin-left: auto;
-  margin-right: 15px;
-  background: #fff;
-  border: 2px solid var(--ink);
-  border-radius: 999px;
-  padding: 2px 8px;
-  box-shadow: 2px 2px 0 var(--ink);
-}
-
-.translate-widget {
-  margin-left: auto;
-  margin-right: 15px;
-  background: #fff;
-  border: 2px solid var(--ink);
-  border-radius: 999px;
-  padding: 4px 12px;
-  box-shadow: 2px 2px 0 var(--ink);
-  display: flex;
-  align-items: center;
-}
-
-/* Ocultar la barra superior fea de Google */
-.goog-te-banner-frame { display: none !important; }
-body { top: 0px !important; }
-.goog-logo-link { display: none !important; }
-
-/* Darle el estilo al selector */
-.goog-te-gadget {
-  font-family: var(--ff-body) !important;
-  font-size: 14px !important; /* Antes era 0px, por eso no se veía el texto */
-  color: var(--ink) !important;
-}
-
-.goog-te-gadget .goog-te-combo {
-  font-family: var(--ff-body);
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--ink);
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  outline: none;
-  margin: 0;
-}
-
-/* Ocultar el texto "Powered by Google Translate" */
-.goog-te-gadget span {
-  display: none !important;
-}
-.goog-te-gadget > div {
-  display: inline-block !important;
-}
-
-/* En celulares, que el traductor se vea un poco más pequeño */
-@media (max-width: 760px) {
-  .translate-widget {
-    margin-right: 5px;
-    padding: 2px 8px;
-  }
-  .goog-te-gadget, .goog-te-gadget .goog-te-combo {
-    font-size: 12px !important;
-  }
-}
-
-/* ==========================================
-   BOTONES DE TRADUCCIÓN PERSONALIZADOS
-   ========================================== */
-.lang-switch {
-  display: flex;
-  gap: 10px;
-  margin-left: auto;
-  margin-right: 15px;
-}
-
-.btn-lang {
-  background: #fff;
-  color: var(--ink);
-  border: 2px solid var(--ink);
-  border-radius: 999px;
-  padding: 8px 16px;
-  font-family: var(--ff-body);
-  font-weight: 700;
-  font-size: 14px;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  box-shadow: 3px 3px 0 var(--ink);
-  transition: all 0.15s ease;
-}
-
-.btn-lang:hover {
-  background: var(--sun);
-  transform: translate(-2px, -2px);
-  box-shadow: 5px 5px 0 var(--ink);
-}
-
-.btn-lang:active {
-  transform: translate(0, 0);
-  box-shadow: 1px 1px 0 var(--ink);
-}
-
-/* Ocultar la barra fea de Google */
-.goog-te-banner-frame { display: none !important; }
-body { top: 0px !important; }
-.goog-te-gadget { display: none !important; }
-
-/* Chat más grande en PC */
-@media (min-width: 768px) {
-  .chat-window {
-    width: 420px;
-    height: 650px;
-    max-height: calc(100vh - 4rem);
-    border-radius: 20px;
-  }
-  .msg {
-    font-size: 15px;
-    padding: 12px 16px;
-    max-width: 85%;
-  }
-  .chat-header h4 { font-size: 18px; }
-  .chat-input input { font-size: 15px; padding: 12px 16px; }
-}
-
-/* Botones de Audio (Accesibilidad) */
-.btn-escuchar-tramite {
-  background: #fff;
-  color: var(--ink);
-  border: 2px solid var(--ink);
-  padding: 0.4rem 1rem;
-  border-radius: 999px;
-  font-family: var(--ff-body);
-  font-weight: 700;
-  font-size: 0.85rem;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  margin-bottom: 1rem;
-  align-self: flex-start;
-  box-shadow: 3px 3px 0 var(--ink);
-  transition: transform 0.15s, box-shadow 0.15s, background 0.2s;
-}
-
-.btn-escuchar-tramite:hover {
-  background: var(--sun);
-  transform: translate(-2px, -2px);
-  box-shadow: 5px 5px 0 var(--ink);
-}
-
-.btn-escuchar-tramite.leyendo {
-  background: var(--coral);
-  color: #fff;
-  animation: pulseAudio 1.5s infinite;
-}
-
-.btn-audio {
-  background: var(--cream);
-  color: var(--ink);
-  border: 1.5px solid var(--ink);
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  margin-top: 8px;
-  font-size: 0.8rem;
-  box-shadow: 2px 2px 0 var(--ink);
-  transition: transform 0.15s, box-shadow 0.15s, background 0.2s;
-}
-
-.btn-audio:hover {
-  background: var(--sun);
-  transform: translate(-1px, -1px);
-  box-shadow: 3px 3px 0 var(--ink);
-}
-
-@keyframes pulseAudio {
-  0% { box-shadow: 3px 3px 0 var(--ink), 0 0 0 0 rgba(255, 107, 87, 0.5); }
-  70% { box-shadow: 3px 3px 0 var(--ink), 0 0 0 10px rgba(255, 107, 87, 0); }
-  100% { box-shadow: 3px 3px 0 var(--ink), 0 0 0 0 rgba(255, 107, 87, 0); }
-}
-
-/* En móviles, los botones de idioma se hacen más chiquitos */
-@media (max-width: 760px) {
-  .lang-switch { gap: 5px; margin-right: 5px; }
-  .btn-lang { padding: 5px 10px; font-size: 12px; }
-}
