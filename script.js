@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   
   // ============================================
-  // 1. CONFIGURACIÓN DEL CHAT (Tu URL de Google Apps Script)
+  // 1. CONFIGURACIÓN DEL CHAT
   // ============================================
   const PROXY_URL = 'https://script.google.com/macros/s/AKfycbwPjNRXyhqupSczcjToHnoAbLDsl7ZAPAxa5nCaltfqIzUmqHjcy10Vua73p_jyUsRO/exec'; 
 
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ============================================
-  // 3. FUNCIÓN MAESTRA PARA LEER EN VOZ ALTA (ACCESIBILIDAD)
+  // 3. FUNCIÓN MAESTRA PARA LEER EN VOZ ALTA
   // ============================================
   function reproducirTexto(textoParaLeer) {
     if (!('speechSynthesis' in window)) {
@@ -45,11 +45,10 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    window.speechSynthesis.cancel(); // Detener audios anteriores
-    const textoLimpio = textoParaLeer.replace(/[⚠️❌⏳🪪🛂🧾❤️🏦🗳️👉]/g, ''); // Limpiar emojis
+    window.speechSynthesis.cancel();
+    const textoLimpio = textoParaLeer.replace(/[⚠️❌⏳🪪🛂🧾❤️🏦🗳️👉]/g, ''); 
     const mensaje = new SpeechSynthesisUtterance(textoLimpio);
 
-    // Buscar voz en español (prioriza es-PE, si no hay, usa cualquier "es")
     const voces = window.speechSynthesis.getVoices();
     const vozElegida = 
       voces.find(v => v.lang === 'es-PE') || 
@@ -64,11 +63,11 @@ document.addEventListener('DOMContentLoaded', () => {
       mensaje.lang = 'es-ES';
     }
 
-    mensaje.rate = 1.0; // Velocidad
+    mensaje.rate = 1.0;
     window.speechSynthesis.speak(mensaje);
   }
 
-  // Evento para el botón "Escuchar" de las tarjetas
+  // Evento para botones de Escuchar
   document.addEventListener('click', (e) => {
     const btn = e.target.closest('.btn-escuchar-tramite');
     if (!btn) return;
@@ -127,111 +126,132 @@ document.addEventListener('DOMContentLoaded', () => {
   const quickBtns = document.querySelectorAll('#msgQuick button');
   const badge = document.getElementById('chatBadge');
 
-  if (!toggle || !ventana) return;
+  if (toggle && ventana) {
+    
+    function agregarMensaje(texto, quien) {
+      const div = document.createElement('div');
+      div.className = `msg msg-${quien}`;
+      const p = document.createElement('p');
+      p.textContent = texto; 
+      div.appendChild(p);
 
-  function agregarMensaje(texto, quien) {
-    const div = document.createElement('div');
-    div.className = `msg msg-${quien}`;
-    const p = document.createElement('p');
-    p.textContent = texto; 
-    div.appendChild(p);
-
-    if (quien === 'bot') {
-      const btnAudio = document.createElement('button');
-      btnAudio.className = 'btn-audio';
-      btnAudio.innerHTML = '<i class="fas fa-volume-up"></i>';
-      btnAudio.title = 'Escuchar mensaje';
-      btnAudio.setAttribute('aria-label', 'Escuchar mensaje en voz alta');
-      btnAudio.onclick = () => reproducirTexto(texto);
-      div.appendChild(btnAudio);
-    }
-
-    mensajes.appendChild(div);
-    mensajes.scrollTop = mensajes.scrollHeight;
-    return div;
-  }
-
-  function mostrarEscribiendo() {
-    const div = document.createElement('div');
-    div.className = 'msg msg-bot msg-escribiendo';
-    for (let i = 0; i < 3; i++) div.appendChild(document.createElement('span'));
-    mensajes.appendChild(div);
-    mensajes.scrollTop = mensajes.scrollHeight;
-    return div;
-  }
-
-  async function preguntarAGemini(mensaje) {
-    try {
-      const respuesta = await fetch(PROXY_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify({ mensaje: mensaje })
-      });
-      if (!respuesta.ok) throw new Error('Error de red');
-      const data = await respuesta.json();
-
-      if (data.error) {
-        if (data.error.includes("high demand")) return "⏳ El asistente está muy solicitado. Intenta de nuevo en un ratito.";
-        return "⚠️ Error: " + data.error;
+      if (quien === 'bot') {
+        const btnAudio = document.createElement('button');
+        btnAudio.className = 'btn-audio';
+        btnAudio.innerHTML = '<i class="fas fa-volume-up"></i>';
+        btnAudio.title = 'Escuchar mensaje';
+        btnAudio.setAttribute('aria-label', 'Escuchar mensaje en voz alta');
+        btnAudio.onclick = () => reproducirTexto(texto);
+        div.appendChild(btnAudio);
       }
-      return data.respuesta || 'No obtuve respuesta.';
-    } catch (error) {
-      console.error('Error con Gemini:', error);
-      return '❌ No pude conectarme al asistente. Revisa tu conexión.';
-    }
-  }
 
-  async function procesarMensaje(texto) {
-    const textoLimpio = texto.trim();
-    if (!textoLimpio) return;
-
-    agregarMensaje(textoLimpio, 'user');
-    if (document.getElementById('msgQuick')) {
-      document.getElementById('msgQuick').style.display = 'none';
+      mensajes.appendChild(div);
+      mensajes.scrollTop = mensajes.scrollHeight;
+      return div;
     }
 
-    const escribiendo = mostrarEscribiendo();
+    function mostrarEscribiendo() {
+      const div = document.createElement('div');
+      div.className = 'msg msg-bot msg-escribiendo';
+      for (let i = 0; i < 3; i++) div.appendChild(document.createElement('span'));
+      mensajes.appendChild(div);
+      mensajes.scrollTop = mensajes.scrollHeight;
+      return div;
+    }
 
-    setTimeout(async () => {
-      escribiendo.remove();
-      const respuestaIA = await preguntarAGemini(textoLimpio);
-      agregarMensaje(respuestaIA, 'bot');
-    }, 800);
-  }
+    async function preguntarAGemini(mensaje) {
+      try {
+        const respuesta = await fetch(PROXY_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({ mensaje: mensaje })
+        });
+        if (!respuesta.ok) throw new Error('Error de red');
+        const data = await respuesta.json();
 
-  function abrirChat() {
-    ventana.classList.add('abierto');
-    toggle.classList.add('abierto');
-    if (badge) badge.style.display = 'none';
-    setTimeout(() => input.focus(), 300);
-  }
+        if (data.error) {
+          if (data.error.includes("high demand") || data.error.includes("overloaded")) {
+            return "⏳ El asistente está muy solicitado. Intenta de nuevo en un ratito.";
+          }
+          return "⚠️ Error: " + data.error;
+        }
+        return data.respuesta || 'No obtuve respuesta.';
+      } catch (error) {
+        console.error('Error con la IA:', error);
+        return '❌ No pude conectarme al asistente. Revisa tu conexión.';
+      }
+    }
 
-  function cerrarChat() {
-    ventana.classList.remove('abierto');
-    toggle.classList.remove('abierto');
-  }
+    async function procesarMensaje(texto) {
+      const textoLimpio = texto.trim();
+      if (!textoLimpio) return;
 
-  toggle.addEventListener('click', () => {
-    ventana.classList.contains('abierto') ? cerrarChat() : abrirChat();
-  });
+      agregarMensaje(textoLimpio, 'user');
+      if (document.getElementById('msgQuick')) {
+        document.getElementById('msgQuick').style.display = 'none';
+      }
 
-  cerrar.addEventListener('click', cerrarChat);
+      const escribiendo = mostrarEscribiendo();
 
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const texto = input.value;
-    input.value = '';
-    procesarMensaje(texto);
-  });
+      setTimeout(async () => {
+        escribiendo.remove();
+        const respuestaIA = await preguntarAGemini(textoLimpio);
+        agregarMensaje(respuestaIA, 'bot');
+      }, 800);
+    }
 
-  quickBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      input.value = btn.textContent.trim();
-      form.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
+    function abrirChat() {
+      ventana.classList.add('abierto');
+      toggle.classList.add('abierto');
+      if (badge) badge.style.display = 'none';
+      setTimeout(() => input.focus(), 300);
+    }
+
+    function cerrarChat() {
+      ventana.classList.remove('abierto');
+      toggle.classList.remove('abierto');
+    }
+
+    toggle.addEventListener('click', () => {
+      ventana.classList.contains('abierto') ? cerrarChat() : abrirChat();
     });
-  });
 
-  // Pequeño arreglo para que las voces carguen bien en algunos navegadores
+    cerrar.addEventListener('click', cerrarChat);
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const texto = input.value;
+      input.value = '';
+      procesarMensaje(texto);
+    });
+
+    quickBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        input.value = btn.textContent.trim();
+        form.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
+      });
+    });
+  }
+
+  // ============================================
+  // 5. TRADUCCIÓN AUTOMÁTICA (QUECHUA / ESPAÑOL)
+  // ============================================
+  const btnQuechua = document.getElementById('btnQuechua');
+  const btnEspanol = document.getElementById('btnEspanol');
+
+  function forzarIdioma(codigoIdioma) {
+    if (codigoIdioma === 'es') {
+      document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+    } else {
+      document.cookie = `googtrans=/es/${codigoIdioma}; path=/;`;
+    }
+    window.location.reload();
+  }
+
+  if (btnQuechua) btnQuechua.addEventListener('click', () => forzarIdioma('qu'));
+  if (btnEspanol) btnEspanol.addEventListener('click', () => forzarIdioma('es'));
+
+  // Arreglo para voces
   window.speechSynthesis.onvoiceschanged = () => {
     window.speechSynthesis.getVoices();
   };
