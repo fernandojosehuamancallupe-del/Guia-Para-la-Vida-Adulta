@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   
   // ============================================
-  // 1. CONFIGURACIÓN DEL CHAT (Groq API vía Apps Script)
+  // 1. CONFIGURACIÓN DEL CHAT
   // ============================================
   const PROXY_URL = 'https://script.google.com/macros/s/AKfycbwPjNRXyhqupSczcjToHnoAbLDsl7ZAPAxa5nCaltfqIzUmqHjcy10Vua73p_jyUsRO/exec'; 
 
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ============================================
-  // 3. FUNCIÓN MAESTRA PARA LEER EN VOZ ALTA (ACCESIBILIDAD)
+  // 3. FUNCIÓN MAESTRA PARA LEER EN VOZ ALTA
   // ============================================
   function reproducirTexto(textoParaLeer) {
     if (!('speechSynthesis' in window)) {
@@ -49,7 +49,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const textoLimpio = textoParaLeer.replace(/[⚠️❌⏳🪪🛂🧾❤️🏦🗳️👉]/g, ''); 
     const mensaje = new SpeechSynthesisUtterance(textoLimpio);
 
-    // Buscar voz en español
     const voces = window.speechSynthesis.getVoices();
     const vozElegida = 
       voces.find(v => v.lang === 'es-PE') || 
@@ -68,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.speechSynthesis.speak(mensaje);
   }
 
-  // Botones de Escuchar en Tarjetas
+  // Evento para botones de Escuchar
   document.addEventListener('click', (e) => {
     const btn = e.target.closest('.btn-escuchar-tramite');
     if (!btn) return;
@@ -234,7 +233,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Arreglo para voces en navegadores
+  // ============================================
+  // 5. TRADUCCIÓN AUTOMÁTICA (QUECHUA / ESPAÑOL)
+  // ============================================
+  const btnQuechua = document.getElementById('btnQuechua');
+  const btnEspanol = document.getElementById('btnEspanol');
+
+  function forzarIdioma(codigoIdioma) {
+    if (codigoIdioma === 'es') {
+      document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+    } else {
+      document.cookie = `googtrans=/es/${codigoIdioma}; path=/;`;
+    }
+    window.location.reload();
+  }
+
+  if (btnQuechua) btnQuechua.addEventListener('click', () => forzarIdioma('qu'));
+  if (btnEspanol) btnEspanol.addEventListener('click', () => forzarIdioma('es'));
+
+  // Arreglo para voces
   window.speechSynthesis.onvoiceschanged = () => {
     window.speechSynthesis.getVoices();
   };
