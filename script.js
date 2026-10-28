@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   
   // ============================================
-  // 1. CONFIGURACIÓN DEL CHAT
+  // 1. CONFIGURACIÓN DEL CHAT (Groq API vía Apps Script)
   // ============================================
   const PROXY_URL = 'https://script.google.com/macros/s/AKfycbwPjNRXyhqupSczcjToHnoAbLDsl7ZAPAxa5nCaltfqIzUmqHjcy10Vua73p_jyUsRO/exec'; 
 
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ============================================
-  // 3. FUNCIÓN MAESTRA PARA LEER EN VOZ ALTA
+  // 3. FUNCIÓN MAESTRA PARA LEER EN VOZ ALTA (ACCESIBILIDAD)
   // ============================================
   function reproducirTexto(textoParaLeer) {
     if (!('speechSynthesis' in window)) {
@@ -49,6 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const textoLimpio = textoParaLeer.replace(/[⚠️❌⏳🪪🛂🧾❤️🏦🗳️👉]/g, ''); 
     const mensaje = new SpeechSynthesisUtterance(textoLimpio);
 
+    // Buscar voz en español
     const voces = window.speechSynthesis.getVoices();
     const vozElegida = 
       voces.find(v => v.lang === 'es-PE') || 
@@ -67,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.speechSynthesis.speak(mensaje);
   }
 
-  // Evento para botones de Escuchar
+  // Botones de Escuchar en Tarjetas
   document.addEventListener('click', (e) => {
     const btn = e.target.closest('.btn-escuchar-tramite');
     if (!btn) return;
@@ -233,42 +234,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ============================================
-  // 5. TRADUCCIÓN AUTOMÁTICA (QUECHUA / ESPAÑOL)
-  // ============================================
-  const btnQuechua = document.getElementById('btnQuechua');
-  const btnEspanol = document.getElementById('btnEspanol');
-
-  function traducirPagina(codigoIdioma) {
-    // Buscamos el menú desplegable oculto de Google Translate
-    const combo = document.querySelector('.goog-te-combo');
-
-    if (combo) {
-      // Si existe, le cambiamos el idioma y disparamos el evento
-      combo.value = codigoIdioma;
-      combo.dispatchEvent(new Event('change'));
-      
-      // Si el usuario elige español, a veces Google no vuelve al original de una, 
-      // así que hacemos una pequeña recarga de respaldo.
-      if (codigoIdioma === 'es') {
-        setTimeout(() => {
-          if (document.body.style.top !== '0px') {
-             document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-             window.location.reload();
-          }
-        }, 500);
-      }
-    } else {
-      // Si el combo no existe (por ejemplo, porque un AdBlock lo bloqueó),
-      // usamos el método de la cookie y recargamos.
-      if (codigoIdioma === 'es') {
-        document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-      } else {
-        document.cookie = `googtrans=/es/${codigoIdioma}; path=/;`;
-      }
-      window.location.reload();
-    }
-  }
-
-  if (btnQuechua) btnQuechua.addEventListener('click', () => traducirPagina('qu'));
-  if (btnEspanol) btnEspanol.addEventListener('click', () => traducirPagina('es'));
+  // Arreglo para voces en navegadores
+  window.speechSynthesis.onvoiceschanged = () => {
+    window.speechSynthesis.getVoices();
+  };
+});
