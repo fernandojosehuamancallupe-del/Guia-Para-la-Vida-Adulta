@@ -328,3 +328,130 @@ body { top: 0px !important; }
     font-size: 12px !important;
   }
 }
+
+/* ==========================================
+   BOTONES DE TRADUCCIÓN PERSONALIZADOS
+   ========================================== */
+.lang-switch {
+  display: flex;
+  gap: 10px;
+  margin-left: auto;
+  margin-right: 15px;
+}
+
+.btn-lang {
+  background: #fff;
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  padding: 8px 16px;
+  font-family: var(--ff-body);
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 3px 3px 0 var(--ink);
+  transition: all 0.15s ease;
+}
+
+.btn-lang:hover {
+  background: var(--sun);
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 var(--ink);
+}
+
+.btn-lang:active {
+  transform: translate(0, 0);
+  box-shadow: 1px 1px 0 var(--ink);
+}
+
+/* Ocultar la barra fea de Google */
+.goog-te-banner-frame { display: none !important; }
+body { top: 0px !important; }
+.goog-te-gadget { display: none !important; }
+
+/* Chat más grande en PC */
+@media (min-width: 768px) {
+  .chat-window {
+    width: 420px;
+    height: 650px;
+    max-height: calc(100vh - 4rem);
+    border-radius: 20px;
+  }
+  .msg {
+    font-size: 15px;
+    padding: 12px 16px;
+    max-width: 85%;
+  }
+  .chat-header h4 { font-size: 18px; }
+  .chat-input input { font-size: 15px; padding: 12px 16px; }
+}
+
+/* Botones de Audio (Accesibilidad) */
+.btn-escuchar-tramite {
+  background: #fff;
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  font-family: var(--ff-body);
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+  align-self: flex-start;
+  box-shadow: 3px 3px 0 var(--ink);
+  transition: transform 0.15s, box-shadow 0.15s, background 0.2s;
+}
+
+.btn-escuchar-tramite:hover {
+  background: var(--sun);
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 var(--ink);
+}
+
+.btn-escuchar-tramite.leyendo {
+  background: var(--coral);
+  color: #fff;
+  animation: pulseAudio 1.5s infinite;
+}
+
+.btn-audio {
+  background: var(--cream);
+  color: var(--ink);
+  border: 1.5px solid var(--ink);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-top: 8px;
+  font-size: 0.8rem;
+  box-shadow: 2px 2px 0 var(--ink);
+  transition: transform 0.15s, box-shadow 0.15s, background 0.2s;
+}
+
+.btn-audio:hover {
+  background: var(--sun);
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+@keyframes pulseAudio {
+  0% { box-shadow: 3px 3px 0 var(--ink), 0 0 0 0 rgba(255, 107, 87, 0.5); }
+  70% { box-shadow: 3px 3px 0 var(--ink), 0 0 0 10px rgba(255, 107, 87, 0); }
+  100% { box-shadow: 3px 3px 0 var(--ink), 0 0 0 0 rgba(255, 107, 87, 0); }
+}
+
+/* En móviles, los botones de idioma se hacen más chiquitos */
+@media (max-width: 760px) {
+  .lang-switch { gap: 5px; margin-right: 5px; }
+  .btn-lang { padding: 5px 10px; font-size: 12px; }
+}
