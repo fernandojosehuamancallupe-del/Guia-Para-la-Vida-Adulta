@@ -988,6 +988,14 @@ header p {
   font-size: 1.2rem;
   flex-shrink: 0;
   border: 2px solid rgba(255, 255, 255, 0.4);
+  overflow: hidden; /* Para que la imagen no se salga del círculo */
+  padding: 0;
+}
+
+.chat-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ajusta la imagen perfectamente */
 }
 
 .chat-info {
@@ -1260,4 +1268,42 @@ footer i.fa-heart {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* ================================
+   BOTÓN DE AUDIO PARA ACCESIBILIDAD
+   ================================ */
+.btn-audio {
+  background: #F5EFE6;
+  border: 1px solid rgba(200, 16, 46, 0.2);
+  color: var(--peru-rojo);
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-top: 8px;
+  font-size: 0.75rem;
+  transition: all 0.2s ease;
+}
+
+.btn-audio:hover {
+  background: var(--peru-rojo);
+  color: white;
+  transform: scale(1.1);
+}
+
+/* Ocultar el botón visualmente pero mantenerlo accesible para lectores de pantalla */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
