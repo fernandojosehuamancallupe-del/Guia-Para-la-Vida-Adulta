@@ -5,53 +5,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Guía para la Vida Adulta - Adolescentes Perú</title>
 
-  <!-- ================================
-       POLÍTICA DE SEGURIDAD (CSP)
-       Permite solo los recursos necesarios:
-       - YouTube para videos
-       - Formspree para el formulario
-       - Google Fonts para tipografía
-       - Font Awesome desde cdnjs
-       ================================ -->
-<meta http-equiv="Content-Security-Policy"
-      content="
-        default-src 'self';
-        script-src 'self' https://cdnjs.cloudflare.com https://www.youtube.com https://s.ytimg.com https://translate.google.com https://translate.googleapis.com 'unsafe-inline';
-        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://translate.googleapis.com;
-        font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;
-        img-src 'self' data: https://i.ytimg.com https://www.youtube.com https://api.dicebear.com;
-        connect-src 'self' https://formspree.io https://www.youtube.com https://script.google.com https://script.googleusercontent.com https://translate.googleapis.com;
-        frame-src https://www.youtube.com https://www.youtube-nocookie.com https://translate.google.com;
-        form-action 'self' https://formspree.io;
-        base-uri 'self';
-        object-src 'none';
-      ">
+  <!-- POLÍTICA DE SEGURIDAD (CSP) -->
+  <meta http-equiv="Content-Security-Policy"
+        content="
+          default-src 'self';
+          script-src 'self' https://cdnjs.cloudflare.com https://www.youtube.com https://s.ytimg.com https://translate.google.com https://translate.googleapis.com 'unsafe-inline';
+          style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://translate.googleapis.com;
+          font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;
+          img-src 'self' data: https://i.ytimg.com https://www.youtube.com https://api.dicebear.com;
+          connect-src 'self' https://formspree.io https://www.youtube.com https://script.google.com https://script.googleusercontent.com https://translate.googleapis.com;
+          frame-src https://www.youtube.com https://www.youtube-nocookie.com https://translate.google.com;
+          form-action 'self' https://formspree.io;
+          base-uri 'self';
+          object-src 'none';
+        ">
 
-  <!-- Refuerzo de políticas de referencia y permisos -->
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
 
-  <!-- Google Fonts (con crossorigin para SRI) -->
+  <!-- Fuentes y Estilos -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
-
-  <!-- Font Awesome con SRI (versión 6.4.0 fijada) -->
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-        crossorigin="anonymous"
-        referrerpolicy="no-referrer">
-
-  <!-- CSS propio -->
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="tema.css">
+
+  <!-- Script para inicializar Google Translate en segundo plano -->
   <script type="text/javascript">
     function googleTranslateElementInit() {
       new google.translate.TranslateElement({
         pageLanguage: 'es',
-        includedLanguages: 'qu,es,en', // Quechua, Español, Inglés
+        includedLanguages: 'qu,es,en',
         layout: google.translate.TranslateElement.InlineLayout.SIMPLE
       }, 'google_translate_element');
     }
@@ -75,12 +63,19 @@
   <svg class="bs b3"><use href="#s-chakana"/></svg><svg class="bs b4"><use href="#s-semi"/></svg>
 </div>
 
-
 <nav class="site-nav" id="bloquesNav" aria-label="Categorías">
   <a class="brand" href="#top"><i class="fas fa-flag"></i> Guía Adulto Joven</a>
   
-  <div id="google_translate_element" class="translate-widget"></div>
-  
+  <!-- BOTONES DE TRADUCCIÓN PERSONALIZADOS -->
+  <div class="lang-switch">
+    <button type="button" class="btn-lang" id="btnQuechua" title="Traducir al quechua">
+      <i class="fas fa-language"></i> Quechua
+    </button>
+    <button type="button" class="btn-lang" id="btnEspanol" title="Volver al español">
+      <i class="fas fa-undo"></i> Español
+    </button>
+  </div>
+
   <div class="nav-links" id="navLinks"></div>
 </nav>
 
@@ -106,205 +101,145 @@
   </header>
 
   <section class="box" style="--z:19;--bg:var(--derby)">
-  <!-- INTRO -->
-  <div class="intro">
-    <h2><i class="fas fa-rocket"></i> ¡Bienvenido a la vida adulta!</h2>
-    <p>Cumplir 18 años en Perú trae consigo nuevos derechos y responsabilidades. Desde obtener tu DNI hasta abrir tu primera cuenta bancaria, aquí encontrarás una guía clara y sencilla con los trámites esenciales que todo joven peruano debe conocer. ¡Toma el control de tu futuro!</p>
-  </div>
-
-  <!-- LEYENDA DE MODALIDADES -->
-  <div class="leyenda-modalidad">
-    <span class="leyenda-label"><i class="fas fa-info-circle"></i> Modalidades:</span>
-    <span class="pill pill-online"><i class="fas fa-wifi"></i> Online</span>
-    <span class="pill pill-presencial"><i class="fas fa-building"></i> Presencial</span>
-    <span class="pill pill-mixto"><i class="fas fa-random"></i> Online y Presencial</span>
-  </div>
-
+    <div class="intro">
+      <h2><i class="fas fa-rocket"></i> ¡Bienvenido a la vida adulta!</h2>
+      <p>Cumplir 18 años en Perú trae consigo nuevos derechos y responsabilidades. Desde obtener tu DNI hasta abrir tu primera cuenta bancaria, aquí encontrarás una guía clara y sencilla con los trámites esenciales que todo joven peruano debe conocer. ¡Toma el control de tu futuro!</p>
+    </div>
+    <div class="leyenda-modalidad">
+      <span class="leyenda-label"><i class="fas fa-info-circle"></i> Modalidades:</span>
+      <span class="pill pill-online"><i class="fas fa-wifi"></i> Online</span>
+      <span class="pill pill-presencial"><i class="fas fa-building"></i> Presencial</span>
+      <span class="pill pill-mixto"><i class="fas fa-random"></i> Online y Presencial</span>
+    </div>
   </section>
 
-  <!-- TRÁMITES -->
+  <!-- TRÁMITES ESENCIALES (Estáticos) -->
   <section class="bloque box" id="basico" style="--z:18;--bg:var(--ecru)">
-  <div class="bloque-head"><div><h2>Trámites esenciales</h2><p>Haz clic en "Ver pasos" para conocer los detalles de cada trámite.</p></div></div>
+    <div class="bloque-head"><div><h2>Trámites esenciales</h2><p>Haz clic en "Ver pasos" para conocer los detalles de cada trámite.</p></div></div>
+    <div class="tramites-grid" id="tramitesGrid">
+      
+      <!-- DNI -->
+      <div class="tramite-card" data-color="rojo">
+        <div class="icon"><i class="fas fa-id-card"></i></div>
+        <button class="btn-escuchar-tramite" aria-label="Escuchar información del trámite"><i class="fas fa-volume-up"></i> Escuchar</button>
+        <h3>DNI (Mayor de edad)</h3>
+        <p>Obtén tu Documento Nacional de Identidad como ciudadano peruano adulto.</p>
+        <div class="modalidad"><span class="pill pill-presencial"><i class="fas fa-building"></i> Presencial</span></div>
+        <div class="video-tutorial"><p class="video-label"><i class="fas fa-video"></i> Video tutorial</p><div class="video-wrapper" data-video="https://www.youtube.com/embed/TOOlb5n9nfE"></div></div>
+        <button class="btn-ver-mas" data-target="detalle1"><span>Ver pasos</span> <i class="fas fa-chevron-down"></i></button>
+        <div class="detalle" id="detalle1">
+          <ul>
+            <li><strong>¿Desde cuándo?</strong> Puedes solicitarlo desde que cumples <strong>17 años</strong>.</li>
+            <li><strong>Requisitos:</strong> DNI anterior (o partida de nacimiento), comprobante de pago.</li>
+            <li><strong>Costo:</strong> S/ 30.00 (DNI amarillo) o S/ 41.00 (DNIe) con código 02121.</li>
+            <li><strong>Dónde pagar:</strong> Págalo.pe, Banco de la Nación o agentes BCP.</li>
+            <li><strong>Vigencia:</strong> 10 años.</li>
+          </ul>
+          <a href="https://www.gob.pe/250-renovar-dni-azul-o-dnie" target="_blank" rel="noopener noreferrer" class="btn-mas-info"><i class="fas fa-external-link-alt"></i> Más información oficial (RENIEC)</a>
+        </div>
+      </div>
 
-  <div class="tramites-grid" id="tramitesGrid">
+      <!-- Pasaporte -->
+      <div class="tramite-card" data-color="dorado">
+        <div class="icon"><i class="fas fa-passport"></i></div>
+        <button class="btn-escuchar-tramite" aria-label="Escuchar información del trámite"><i class="fas fa-volume-up"></i> Escuchar</button>
+        <h3>Pasaporte</h3>
+        <p>Para viajar al extranjero y realizar trámites internacionales.</p>
+        <div class="modalidad"><span class="pill pill-presencial"><i class="fas fa-building"></i> Presencial</span></div>
+        <div class="video-tutorial"><p class="video-label"><i class="fas fa-video"></i> Video tutorial</p><div class="video-wrapper" data-video="https://www.youtube.com/embed/NTp68huTkV0"></div></div>
+        <button class="btn-ver-mas" data-target="detalle2"><span>Ver pasos</span> <i class="fas fa-chevron-down"></i></button>
+        <div class="detalle" id="detalle2">
+          <ul>
+            <li><strong>Requisitos:</strong> DNI vigente, pago de S/ 120.90 en Págalo.pe (código 01810).</li>
+            <li><strong>Cita:</strong> citaspasaporte.migraciones.gob.pe</li>
+            <li><strong>Dónde:</strong> Migraciones, Migracentros o MAC.</li>
+            <li><strong>Vigencia:</strong> 10 años.</li>
+          </ul>
+          <a href="https://www.gob.pe/174-obtener-pasaporte-electronico-para-mayores-de-edad" target="_blank" rel="noopener noreferrer" class="btn-mas-info"><i class="fas fa-external-link-alt"></i> Más información (Migraciones)</a>
+        </div>
+      </div>
 
-    <!-- 1. DNI -->
-    <div class="tramite-card" data-color="rojo">
-      <div class="icon"><i class="fas fa-id-card"></i></div>
-            <button class="btn-escuchar-tramite" aria-label="Escuchar información del trámite">
-        <i class="fas fa-volume-up"></i> Escuchar
-      </button>
-      <h3>DNI (Mayor de edad)</h3>
-      <p>Obtén tu Documento Nacional de Identidad como ciudadano peruano adulto.</p>
-      <div class="modalidad">
-        <span class="pill pill-presencial"><i class="fas fa-building"></i> Presencial</span>
+      <!-- RUC -->
+      <div class="tramite-card" data-color="terracota">
+        <div class="icon"><i class="fas fa-file-invoice"></i></div>
+        <button class="btn-escuchar-tramite" aria-label="Escuchar información del trámite"><i class="fas fa-volume-up"></i> Escuchar</button>
+        <h3>RUC (Persona Natural)</h3>
+        <p>Registro Único del Contribuyente, necesario para facturar y emprender.</p>
+        <div class="modalidad"><span class="pill pill-online"><i class="fas fa-wifi"></i> Online</span><span class="pill pill-presencial"><i class="fas fa-building"></i> Presencial</span></div>
+        <div class="video-tutorial"><p class="video-label"><i class="fas fa-video"></i> Video tutorial</p><div class="video-wrapper" data-video="https://www.youtube.com/embed/6m4nVtNQo08"></div></div>
+        <button class="btn-ver-mas" data-target="detalle3"><span>Ver pasos</span> <i class="fas fa-chevron-down"></i></button>
+        <div class="detalle" id="detalle3">
+          <ul>
+            <li><strong>Requisitos:</strong> DNI, correo, celular y fecha de inicio de actividades.</li>
+            <li><strong>Online:</strong> SUNAT Virtual o App Personas SUNAT.</li>
+            <li><strong>Presencial:</strong> Centros de atención SUNAT con cita.</li>
+            <li><strong>Costo:</strong> Gratuito.</li>
+          </ul>
+          <a href="https://www.gob.pe/284-inscripcion-en-el-ruc" target="_blank" rel="noopener noreferrer" class="btn-mas-info"><i class="fas fa-external-link-alt"></i> Más información (SUNAT)</a>
+        </div>
       </div>
-      <div class="video-tutorial">
-        <p class="video-label"><i class="fas fa-video"></i> Video tutorial</p>
-        <div class="video-wrapper" data-video="https://www.youtube.com/embed/TOOlb5n9nfE"></div>
+
+      <!-- SIS / EsSalud -->
+      <div class="tramite-card" data-color="verde">
+        <div class="icon"><i class="fas fa-heartbeat"></i></div>
+        <button class="btn-escuchar-tramite" aria-label="Escuchar información del trámite"><i class="fas fa-volume-up"></i> Escuchar</button>
+        <h3>SIS o EsSalud</h3>
+        <p>Asegúrate para tener cobertura médica gratuita o de bajo costo.</p>
+        <div class="modalidad"><span class="pill pill-online"><i class="fas fa-wifi"></i> Online</span><span class="pill pill-presencial"><i class="fas fa-building"></i> Presencial</span></div>
+        <div class="video-tutorial"><p class="video-label"><i class="fas fa-video"></i> Video tutorial</p><div class="video-wrapper" data-video="https://www.youtube.com/embed/bDkSta23PEw"></div></div>
+        <button class="btn-ver-mas" data-target="detalle4"><span>Ver pasos</span> <i class="fas fa-chevron-down"></i></button>
+        <div class="detalle" id="detalle4">
+          <ul>
+            <li><strong>SIS:</strong> Afiliación virtual en sis.gob.pe. Requisitos: DNI, no tener otro seguro.</li>
+            <li><strong>EsSalud:</strong> Automático si trabajas en planilla. Independientes: +SALUD.</li>
+            <li><strong>Consejo:</strong> Verifica tu cobertura en SUSALUD.</li>
+          </ul>
+          <a href="https://www.gob.pe/institucion/sis/campañas/139622-afiliacion-virtual-al-sis" target="_blank" rel="noopener noreferrer" class="btn-mas-info"><i class="fas fa-external-link-alt"></i> Más información del SIS</a>
+        </div>
       </div>
-      <button class="btn-ver-mas" data-target="detalle1"><span>Ver pasos</span> <i class="fas fa-chevron-down"></i></button>
-      <div class="detalle" id="detalle1">
-        <ul>
-          <li><strong>¿Desde cuándo?</strong> Puedes solicitarlo desde que cumples <strong>17 años</strong>.</li>
-          <li><strong>Requisitos:</strong> DNI anterior (o partida de nacimiento), comprobante de pago.</li>
-          <li><strong>Costo:</strong> S/ 30.00 (DNI amarillo) o S/ 41.00 (DNIe) con código 02121.</li>
-          <li><strong>Dónde pagar:</strong> Págalo.pe, Banco de la Nación o agentes BCP.</li>
-          <li><strong>Vigencia:</strong> 10 años.</li>
-        </ul>
-        <a href="https://www.gob.pe/250-renovar-dni-azul-o-dnie" target="_blank" rel="noopener noreferrer" class="btn-mas-info">
-          <i class="fas fa-external-link-alt"></i> Más información oficial (RENIEC)
-        </a>
+
+      <!-- Cuenta bancaria -->
+      <div class="tramite-card" data-color="marron">
+        <div class="icon"><i class="fas fa-university"></i></div>
+        <button class="btn-escuchar-tramite" aria-label="Escuchar información del trámite"><i class="fas fa-volume-up"></i> Escuchar</button>
+        <h3>Cuenta bancaria</h3>
+        <p>Abre tu primera cuenta de ahorros o sueldo para manejar tu dinero.</p>
+        <div class="modalidad"><span class="pill pill-online"><i class="fas fa-wifi"></i> Online</span><span class="pill pill-presencial"><i class="fas fa-building"></i> Presencial</span></div>
+        <div class="video-tutorial"><p class="video-label"><i class="fas fa-video"></i> Video tutorial</p><div class="video-wrapper" data-video="https://www.youtube.com/embed/fTe-a8QnznQ"></div></div>
+        <button class="btn-ver-mas" data-target="detalle5"><span>Ver pasos</span> <i class="fas fa-chevron-down"></i></button>
+        <div class="detalle" id="detalle5">
+          <ul>
+            <li><strong>Requisitos:</strong> DNI vigente, ser mayor de 18.</li>
+            <li><strong>Online:</strong> Apertura digital en varios bancos.</li>
+            <li><strong>Presencial:</strong> Cualquier agencia con DNI.</li>
+            <li><strong>Beneficios:</strong> Tarjeta de débito, Plin, sin mantenimiento (jóvenes).</li>
+          </ul>
+          <a href="https://www.bbva.pe/personas/productos/cuentas/ahorro/cuenta-joven-digital-bbva.html" target="_blank" rel="noopener noreferrer" class="btn-mas-info"><i class="fas fa-external-link-alt"></i> Ejemplo: Cuenta Joven BBVA</a>
+        </div>
       </div>
+
+      <!-- Voto -->
+      <div class="tramite-card" data-color="rojo">
+        <div class="icon"><i class="fas fa-vote-yea"></i></div>
+        <button class="btn-escuchar-tramite" aria-label="Escuchar información del trámite"><i class="fas fa-volume-up"></i> Escuchar</button>
+        <h3>Voto (obligatorio)</h3>
+        <p>Como ciudadano, tu voto es obligatorio desde los 18 hasta los 70 años.</p>
+        <div class="video-tutorial"><p class="video-label"><i class="fas fa-video"></i> Video tutorial</p><div class="video-wrapper" data-video="https://www.youtube.com/embed/cJ5UuJJRfNQ"></div></div>
+        <button class="btn-ver-mas" data-target="detalle6"><span>Ver pasos</span> <i class="fas fa-chevron-down"></i></button>
+        <div class="detalle" id="detalle6">
+          <ul>
+            <li><strong>Inscripción:</strong> Automática al obtener DNI adulto.</li>
+            <li><strong>Multa por no votar:</strong> S/ 27.50 en zonas de pobreza extrema.</li>
+            <li><strong>¿Dónde pagar?</strong> Banco de la Nación.</li>
+          </ul>
+          <a href="https://www.gob.pe/7768-multas-electorales-por-omision-al-sufragio" target="_blank" rel="noopener noreferrer" class="btn-mas-info"><i class="fas fa-external-link-alt"></i> Más información (JNE)</a>
+        </div>
+      </div>
+
     </div>
-
-    <!-- 2. Pasaporte -->
-    <div class="tramite-card" data-color="dorado">
-      <div class="icon"><i class="fas fa-passport"></i></div>
-            <button class="btn-escuchar-tramite" aria-label="Escuchar información del trámite">
-        <i class="fas fa-volume-up"></i> Escuchar
-      </button>
-      <h3>Pasaporte</h3>
-      <p>Para viajar al extranjero y realizar trámites internacionales.</p>
-      <div class="modalidad">
-        <span class="pill pill-presencial"><i class="fas fa-building"></i> Presencial</span>
-      </div>
-      <div class="video-tutorial">
-        <p class="video-label"><i class="fas fa-video"></i> Video tutorial</p>
-        <div class="video-wrapper" data-video="https://www.youtube.com/embed/NTp68huTkV0"></div>
-      </div>
-      <button class="btn-ver-mas" data-target="detalle2"><span>Ver pasos</span> <i class="fas fa-chevron-down"></i></button>
-      <div class="detalle" id="detalle2">
-        <ul>
-          <li><strong>Requisitos:</strong> DNI vigente, pago de S/ 120.90 en Págalo.pe (código 01810).</li>
-          <li><strong>Cita:</strong> citaspasaporte.migraciones.gob.pe</li>
-          <li><strong>Dónde:</strong> Migraciones, Migracentros o MAC.</li>
-          <li><strong>Vigencia:</strong> 10 años.</li>
-        </ul>
-        <a href="https://www.gob.pe/174-obtener-pasaporte-electronico-para-mayores-de-edad" target="_blank" rel="noopener noreferrer" class="btn-mas-info">
-          <i class="fas fa-external-link-alt"></i> Más información (Migraciones)
-        </a>
-      </div>
-    </div>
-
-    <!-- 3. RUC -->
-    <div class="tramite-card" data-color="terracota">
-      <div class="icon"><i class="fas fa-file-invoice"></i></div>
-            <button class="btn-escuchar-tramite" aria-label="Escuchar información del trámite">
-        <i class="fas fa-volume-up"></i> Escuchar
-      </button>
-      <h3>RUC (Persona Natural)</h3>
-      <p>Registro Único del Contribuyente, necesario para facturar y emprender.</p>
-      <div class="modalidad">
-        <span class="pill pill-online"><i class="fas fa-wifi"></i> Online</span>
-        <span class="pill pill-presencial"><i class="fas fa-building"></i> Presencial</span>
-      </div>
-      <div class="video-tutorial">
-        <p class="video-label"><i class="fas fa-video"></i> Video tutorial</p>
-        <div class="video-wrapper" data-video="https://www.youtube.com/embed/6m4nVtNQo08"></div>
-      </div>
-      <button class="btn-ver-mas" data-target="detalle3"><span>Ver pasos</span> <i class="fas fa-chevron-down"></i></button>
-      <div class="detalle" id="detalle3">
-        <ul>
-          <li><strong>Requisitos:</strong> DNI, correo, celular y fecha de inicio de actividades.</li>
-          <li><strong>Online:</strong> SUNAT Virtual o App Personas SUNAT.</li>
-          <li><strong>Presencial:</strong> Centros de atención SUNAT con cita.</li>
-          <li><strong>Costo:</strong> Gratuito.</li>
-        </ul>
-        <a href="https://www.gob.pe/284-inscripcion-en-el-ruc" target="_blank" rel="noopener noreferrer" class="btn-mas-info">
-          <i class="fas fa-external-link-alt"></i> Más información (SUNAT)
-        </a>
-      </div>
-    </div>
-
-    <!-- 4. SIS / EsSalud -->
-    <div class="tramite-card" data-color="verde">
-      <div class="icon"><i class="fas fa-heartbeat"></i></div>
-            <button class="btn-escuchar-tramite" aria-label="Escuchar información del trámite">
-        <i class="fas fa-volume-up"></i> Escuchar
-      </button>
-      <h3>SIS o EsSalud</h3>
-      <p>Asegúrate para tener cobertura médica gratuita o de bajo costo.</p>
-      <div class="modalidad">
-        <span class="pill pill-online"><i class="fas fa-wifi"></i> Online</span>
-        <span class="pill pill-presencial"><i class="fas fa-building"></i> Presencial</span>
-      </div>
-      <div class="video-tutorial">
-        <p class="video-label"><i class="fas fa-video"></i> Video tutorial</p>
-        <div class="video-wrapper" data-video="https://www.youtube.com/embed/bDkSta23PEw"></div>
-      </div>
-      <button class="btn-ver-mas" data-target="detalle4"><span>Ver pasos</span> <i class="fas fa-chevron-down"></i></button>
-      <div class="detalle" id="detalle4">
-        <ul>
-          <li><strong>SIS:</strong> Afiliación virtual en sis.gob.pe. Requisitos: DNI, no tener otro seguro.</li>
-          <li><strong>EsSalud:</strong> Automático si trabajas en planilla. Independientes: +SALUD.</li>
-          <li><strong>Consejo:</strong> Verifica tu cobertura en SUSALUD.</li>
-        </ul>
-        <a href="https://www.gob.pe/institucion/sis/campañas/139622-afiliacion-virtual-al-sis" target="_blank" rel="noopener noreferrer" class="btn-mas-info">
-          <i class="fas fa-external-link-alt"></i> Más información del SIS
-        </a>
-      </div>
-    </div>
-
-    <!-- 5. Cuenta bancaria -->
-    <div class="tramite-card" data-color="marron">
-      <div class="icon"><i class="fas fa-university"></i></div>
-            <button class="btn-escuchar-tramite" aria-label="Escuchar información del trámite">
-        <i class="fas fa-volume-up"></i> Escuchar
-      </button>
-      <h3>Cuenta bancaria</h3>
-      <p>Abre tu primera cuenta de ahorros o sueldo para manejar tu dinero.</p>
-      <div class="modalidad">
-        <span class="pill pill-online"><i class="fas fa-wifi"></i> Online</span>
-        <span class="pill pill-presencial"><i class="fas fa-building"></i> Presencial</span>
-      </div>
-      <div class="video-tutorial">
-        <p class="video-label"><i class="fas fa-video"></i> Video tutorial</p>
-        <div class="video-wrapper" data-video="https://www.youtube.com/embed/fTe-a8QnznQ"></div>
-      </div>
-      <button class="btn-ver-mas" data-target="detalle5"><span>Ver pasos</span> <i class="fas fa-chevron-down"></i></button>
-      <div class="detalle" id="detalle5">
-        <ul>
-          <li><strong>Requisitos:</strong> DNI vigente, ser mayor de 18.</li>
-          <li><strong>Online:</strong> Apertura digital en varios bancos.</li>
-          <li><strong>Presencial:</strong> Cualquier agencia con DNI.</li>
-          <li><strong>Beneficios:</strong> Tarjeta de débito, Plin, sin mantenimiento (jóvenes).</li>
-        </ul>
-        <a href="https://www.bbva.pe/personas/productos/cuentas/ahorro/cuenta-joven-digital-bbva.html" target="_blank" rel="noopener noreferrer" class="btn-mas-info">
-          <i class="fas fa-external-link-alt"></i> Ejemplo: Cuenta Joven BBVA
-        </a>
-      </div>
-    </div>
-
-    <!-- 6. Voto -->
-    <div class="tramite-card" data-color="rojo">
-      <div class="icon"><i class="fas fa-vote-yea"></i></div>
-            <button class="btn-escuchar-tramite" aria-label="Escuchar información del trámite">
-        <i class="fas fa-volume-up"></i> Escuchar
-      </button>
-      <h3>Voto (obligatorio)</h3>
-      <p>Como ciudadano, tu voto es obligatorio desde los 18 hasta los 70 años.</p>
-      <div class="video-tutorial">
-        <p class="video-label"><i class="fas fa-video"></i> Video tutorial</p>
-        <div class="video-wrapper" data-video="https://www.youtube.com/embed/cJ5UuJJRfNQ"></div>
-      </div>
-      <button class="btn-ver-mas" data-target="detalle6"><span>Ver pasos</span> <i class="fas fa-chevron-down"></i></button>
-      <div class="detalle" id="detalle6">
-        <ul>
-          <li><strong>Inscripción:</strong> Automática al obtener DNI adulto.</li>
-          <li><strong>Multa por no votar:</strong> S/ 27.50 en zonas de pobreza extrema.</li>
-          <li><strong>¿Dónde pagar?</strong> Banco de la Nación.</li>
-        </ul>
-        <a href="https://www.gob.pe/7768-multas-electorales-por-omision-al-sufragio" target="_blank" rel="noopener noreferrer" class="btn-mas-info">
-          <i class="fas fa-external-link-alt"></i> Más información (JNE)
-        </a>
-      </div>
-    </div>
-
-  </div>
   </section>
 
-  <!-- BLOQUES NUEVOS (generados por tramites.js) -->
+  <!-- BLOQUES NUEVOS (Generados por tramites.js) -->
   <div id="bloques"></div>
 
   <!-- CONSEJOS -->
@@ -333,55 +268,22 @@
     </ul>
   </div>
 
-  <!-- ================================
-       FORMULARIO DE OPINIONES (FORMSPREE)
-       ================================ -->
+  <!-- FORMULARIO DE OPINIONES -->
   <section class="opiniones box" id="opiniones" style="--z:8;--bg:var(--ecru)">
     <h2><i class="fas fa-comments"></i> Envíanos tu opinión o recomendación</h2>
-    <p class="opiniones-intro">
-      ¿Tienes alguna sugerencia, encontraste un error, o quieres recomendarnos un trámite que deberíamos agregar?
-      ¡Escríbenos! Tu mensaje llegará directo a nuestro panel.
-    </p>
-
-    <!-- ⚠️ REEMPLAZA "TU_FORM_ID" POR TU ID DE FORMSPREE -->
+    <p class="opiniones-intro">¿Tienes alguna sugerencia, encontraste un error, o quieres recomendarnos un trámite? ¡Escríbenos!</p>
     <form action="https://formspree.io/f/moejqbrg" method="POST" class="formulario">
-      <!-- Honeypot anti-spam de Formspree -->
       <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
-
-      <div class="form-group">
-        <label for="nombre"><i class="fas fa-user"></i> Tu nombre</label>
-        <input type="text" id="nombre" name="nombre" placeholder="Ej: María López" required maxlength="80" autocomplete="name">
-      </div>
-
-      <div class="form-group">
-        <label for="correo"><i class="fas fa-envelope"></i> Tu correo (opcional)</label>
-        <input type="email" id="correo" name="correo" placeholder="tucorreo@ejemplo.com" maxlength="120" autocomplete="email">
-      </div>
-
-      <div class="form-group">
-        <label for="tipo"><i class="fas fa-tag"></i> Tipo de mensaje</label>
+      <div class="form-group"><label for="nombre"><i class="fas fa-user"></i> Tu nombre</label><input type="text" id="nombre" name="nombre" placeholder="Ej: María López" required maxlength="80" autocomplete="name"></div>
+      <div class="form-group"><label for="correo"><i class="fas fa-envelope"></i> Tu correo (opcional)</label><input type="email" id="correo" name="correo" placeholder="tucorreo@ejemplo.com" maxlength="120" autocomplete="email"></div>
+      <div class="form-group"><label for="tipo"><i class="fas fa-tag"></i> Tipo de mensaje</label>
         <select id="tipo" name="tipo" required>
-          <option value="">Selecciona una opción</option>
-          <option value="Recomendación">Recomendación</option>
-          <option value="Opinión">Opinión</option>
-          <option value="Reportar error">Reportar un error</option>
-          <option value="Sugerir trámite">Sugerir un nuevo trámite</option>
-          <option value="Otro">Otro</option>
+          <option value="">Selecciona una opción</option><option value="Recomendación">Recomendación</option><option value="Opinión">Opinión</option><option value="Reportar error">Reportar un error</option><option value="Sugerir trámite">Sugerir un nuevo trámite</option><option value="Otro">Otro</option>
         </select>
       </div>
-
-      <div class="form-group">
-        <label for="mensaje"><i class="fas fa-pen"></i> Tu mensaje</label>
-        <textarea id="mensaje" name="mensaje" rows="5" placeholder="Cuéntanos qué piensas..." required minlength="10" maxlength="2000"></textarea>
-      </div>
-
-      <button type="submit" class="btn-enviar">
-        <i class="fas fa-paper-plane"></i> Enviar mensaje
-      </button>
-
-      <p class="form-nota">
-        <i class="fas fa-lock"></i> Tu información no se comparte con terceros.
-      </p>
+      <div class="form-group"><label for="mensaje"><i class="fas fa-pen"></i> Tu mensaje</label><textarea id="mensaje" name="mensaje" rows="5" placeholder="Cuéntanos qué piensas..." required minlength="10" maxlength="2000"></textarea></div>
+      <button type="submit" class="btn-enviar"><i class="fas fa-paper-plane"></i> Enviar mensaje</button>
+      <p class="form-nota"><i class="fas fa-lock"></i> Tu información no se comparte con terceros.</p>
     </form>
   </section>
 
@@ -393,9 +295,7 @@
 
 </div>
 
-<!-- ================================
-     CHAT FLOTANTE
-     ================================ -->
+<!-- CHAT FLOTANTE -->
 <button class="chat-toggle" id="chatToggle" aria-label="Abrir chat de ayuda">
   <i class="fas fa-comments"></i>
   <span class="chat-badge" id="chatBadge">1</span>
@@ -403,29 +303,25 @@
 
 <div class="chat-window" id="chatWindow" aria-hidden="true">
   <div class="chat-header">
-    <!-- Aquí pones la URL de tu imagen (puede ser un enlace de internet o una foto en tu carpeta) -->
     <div class="chat-avatar">
       <img src="Peru.jpg" alt="Avatar del Asistente">
     </div>
-    
     <div class="chat-info">
-      <!-- Aquí cambias el nombre a tu gusto -->
       <h4>Wasi</h4> 
       <span class="chat-status"><i class="fas fa-circle"></i> En línea</span>
     </div>
-    
     <button class="chat-close" id="chatClose" aria-label="Cerrar chat">
       <i class="fas fa-times"></i>
     </button>
   </div>
   <div class="chat-messages" id="chatMessages">
     <div class="msg msg-bot">
-      <p>¡Hola! 👋 Soy el asistente de la Guía. Cuéntame, ¿qué trámite necesitas resolver?</p>
+      <p>¡Hola! 👋 Soy Wasi, el asistente de la Guía. Cuéntame, ¿qué trámite necesitas resolver?</p>
     </div>
     <div class="msg-quick" id="msgQuick">
       <button data-quick="dni">¿Cómo saco mi DNI?</button>
       <button data-quick="pasaporte">Pasaporte</button>
-      <button data-quick="ruc">RUC</button> <!--hola-->
+      <button data-quick="ruc">RUC</button>
       <button data-quick="sis">SIS / EsSalud</button>
       <button data-quick="banco">Cuenta bancaria</button>
       <button data-quick="voto">Voto</button>
@@ -436,6 +332,9 @@
     <button type="submit" aria-label="Enviar mensaje"><i class="fas fa-paper-plane"></i></button>
   </form>
 </div>
+
+<!-- Widget de Google Oculto (Solo para que funcione la traducción) -->
+<div id="google_translate_element" style="display:none;"></div>
 
 <!-- JS propio -->
 <script src="tramites.js" defer></script>
