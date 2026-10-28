@@ -274,11 +274,30 @@ html, body { overflow-x: clip; max-width: 100%; }
   box-shadow: 2px 2px 0 var(--ink);
 }
 
-/* Ocultar la barra fea de Google */
+.translate-widget {
+  margin-left: auto;
+  margin-right: 15px;
+  background: #fff;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  padding: 4px 12px;
+  box-shadow: 2px 2px 0 var(--ink);
+  display: flex;
+  align-items: center;
+}
+
+/* Ocultar la barra superior fea de Google */
 .goog-te-banner-frame { display: none !important; }
 body { top: 0px !important; }
 .goog-logo-link { display: none !important; }
-.goog-te-gadget { font-family: var(--ff-body) !important; font-size: 0px !important; color: transparent !important; }
+
+/* Darle el estilo al selector */
+.goog-te-gadget {
+  font-family: var(--ff-body) !important;
+  font-size: 14px !important; /* Antes era 0px, por eso no se veía el texto */
+  color: var(--ink) !important;
+}
+
 .goog-te-gadget .goog-te-combo {
   font-family: var(--ff-body);
   font-size: 14px;
@@ -288,12 +307,24 @@ body { top: 0px !important; }
   background: transparent;
   cursor: pointer;
   outline: none;
-  margin: 5px 0;
+  margin: 0;
 }
 
-/* En celulares, que el traductor no ocupe todo el espacio */
+/* Ocultar el texto "Powered by Google Translate" */
+.goog-te-gadget span {
+  display: none !important;
+}
+.goog-te-gadget > div {
+  display: inline-block !important;
+}
+
+/* En celulares, que el traductor se vea un poco más pequeño */
 @media (max-width: 760px) {
   .translate-widget {
-    display: none; /* Se oculta en móviles para no romper el menú */
+    margin-right: 5px;
+    padding: 2px 8px;
+  }
+  .goog-te-gadget, .goog-te-gadget .goog-te-combo {
+    font-size: 12px !important;
   }
 }
